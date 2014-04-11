@@ -1,6 +1,9 @@
 package entidades;
 import java.sql.*;
 import java.io.*;
+import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 public class anuncios {
     Connection conn;
     Statement stmt;
@@ -17,7 +20,7 @@ public class anuncios {
             System.out.println("Cannot connect to database server");
         }
     }
-    public String getName(int ID){
+    public String getNombre(int ID){
         String nombre="";
         try {
             stmt.executeQuery("SELECT Nombre FROM Anuncios WHERE IDAnuncios = "+ID);
@@ -31,5 +34,41 @@ public class anuncios {
             System.out.println("Cannot getNombre()"+e);
         }
         return nombre;
+    }
+    public Calendar getFechaFin(int ID){
+        Date d;
+        Calendar c=Calendar.getInstance();
+        try {
+            stmt.executeQuery("SELECT FechaFin FROM Anuncios WHERE IDAnuncios = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            d=rs.getDate("FechaFin");
+            c.setTime(d);
+            rs.close();
+            return(c);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getFecha()"+e);
+        }
+        return null;
+    }
+    public void setNombre(int ID, String nombre){
+        try {
+           String s = "UPDATE Anuncios SET Nombre = " + nombre + " WHERE IDAnuncios = " + ID;
+           stmt.executeUpdate(s);
+        } 
+        catch (SQLException e) {
+            System.out.println ("Cannot execute disposicion()" + e);
+        }
+    }
+    public void setFechaFin(int ID, Calendar c){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            String s = "UPDATE Anuncios SET FechaFin = " + sdf.format(c.getTime()) + " WHERE IDAnuncios = " + ID;
+            stmt.executeUpdate(s);
+        } 
+        catch (SQLException e) {
+            System.out.println ("Cannot execute disposicion()" + e);
+        }
     }
 }
