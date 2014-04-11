@@ -125,11 +125,103 @@ public class cuenta{
     }
     public void modificarCuenta(int ID, String nombre, String correo, String telefono, String direccion){
         try {
-           String s = "UPDATE Cuenta SET Nombre = " + nombre + " , Corre = " + correo + " , Telefono = " + telefono + " , Direccion = '" + direccion +"' WHERE IDCuenta = " + ID;
+           String s = "UPDATE Cuenta SET Nombre = " + nombre + " , Correo = " + correo + " , Telefono = " + telefono + " , Direccion = '" + direccion +"' WHERE IDCuenta = " + ID;
            stmt.executeUpdate(s);
         } 
         catch (SQLException e) {
             System.out.println ("Cannot execute disposicion()" + e);
+        }
+    }
+}
+class usuario extends cuenta{
+    public usuario(){
+        super();
+    }
+    public void revisarArticuloPublicado(){
+        //pendiente
+    }
+    public void hacerSolicitudEspecial(){
+        //pendiente
+    }
+}
+
+class admin extends cuenta{
+    public admin(){
+        super();
+    }
+    public void revisarArticulo(){
+        //pendiente
+    }
+    public void crearArticulo(int ID, String autor, int longitud, String titulo){
+        try{
+            String s = "INSERT INTO Articulo (IDArticulo, Autor, Longitud, Titulo, Votos, Tipo)" + " VALUES ("+ID+" , '"+ autor + "' , " + longitud + " , 0 , '" + titulo + "' , 'No publicado')";
+            System.out.println(s); 
+            stmt.executeUpdate(s);
+        }
+        catch(Exception e){
+            System.out.println ("Cannot update database" + e );
+        }
+    }
+}
+class juez extends cuenta{
+    public juez(){
+        super();
+    }
+    public void revisarArticulo(){
+        //pendiente
+    }
+    public void votarPorArticulo(int ID){
+        int votos;
+        try {
+            stmt.executeQuery("SELECT Votos FROM Cuenta WHERE IDCuenta = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            votos=rs.getInt("Votos");
+            votos++;
+            String s = "UPDATE Cuenta SET Votos = " + votos + " WHERE IDCuenta = " + ID;
+           stmt.executeUpdate(s);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getDireccion()"+e);
+        }
+    }
+    public void sugerirTema(){
+        //pendiente
+    }
+}
+class editor extends cuenta{
+    public editor(){
+        super();
+    }
+    public void revisarArticulo(){
+        //pendiente
+    }
+    public void generarRevista(int ID, int numero, int cantidad){
+        try{
+            String s = "INSERT INTO Edicion (IDEdicion, numero, cantidad)" + " VALUES ("+ID+" , "+ numero + " , " + cantidad + " , " + cantidad + ")";
+            System.out.println(s); 
+            stmt.executeUpdate(s);
+        }
+        catch(Exception e){
+            System.out.println ("Cannot update database" + e );
+        }
+    }
+}
+class autor extends cuenta{
+    public autor(){
+        super();
+    }
+    public void revisarArticuloPublicado(){
+        //pendiente
+    }
+    public void crearArticulo(int ID, String autor, int longitud, String titulo){
+        try{
+            String s = "INSERT INTO Articulo (IDArticulo, Autor, Longitud, Titulo, Votos, Tipo)" + " VALUES ("+ID+" , '"+ autor + "' , " + longitud + " , 0 , '" + titulo + "' , 'No publicado')";
+            System.out.println(s); 
+            stmt.executeUpdate(s);
+        }
+        catch(Exception e){
+            System.out.println ("Cannot update database" + e );
         }
     }
 }

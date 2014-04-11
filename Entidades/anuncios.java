@@ -71,4 +71,25 @@ public class anuncios {
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
+    public void crearAnuncio(int ID, String nombre, Calendar fecha){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            String s = "INSERT INTO Anuncios (IDPromocion, Nombre, FechaFin)" + " VALUES ("+ID+" , '"+ nombre+ "' , " + sdf.format(fecha.getTime()) + ")";
+            System.out.println(s); 
+            stmt.executeUpdate(s);
+        }
+        catch(Exception e){
+            System.out.println ("Cannot update database" + e );
+        }
+    }
+    public void borrarAnuncio(int ID){
+        try{
+            String s = "DELETE FROM Anuncios WHERE IDAnuncios = " + ID;
+            System.out.println(s); 
+            stmt.executeUpdate(s);
+        }
+        catch(Exception e){
+            System.out.println ("Cannot update database" + e );
+        }
+    }
 }
