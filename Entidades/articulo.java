@@ -102,4 +102,7 @@ public class articulo {
     public void revisarArticulo() {
       //pending
     }
+    public void publicarArticulo() {
+        //pending
+    }
 }
