@@ -65,9 +65,9 @@ public class promocion {
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void crearPromocion(String n, double d){
+    public void crearPromocion(int ID, String n, double d){
         try{
-            String s = "INSERT INTO Promocion (Nombre, Descuento)" + " VALUES ('"+ n + "' , " + d + ")";
+            String s = "INSERT INTO Promocion (IDPromocion, Nombre, Descuento)" + " VALUES ("+ID+" , '"+ n + "' , " + d + ")";
             System.out.println(s); 
             stmt.executeUpdate(s);
         }
