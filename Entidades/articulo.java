@@ -102,7 +102,7 @@ public class articulo {
     public void revisarArticulo() {
       //pending
     }
-    public void seleccionarArticulo(int ID){
+    public void votarArticulo(int ID){
        //pending
     }
 }
