@@ -23,7 +23,7 @@ public class articulo {
             stmt.executeQuery("SELECT Titulo FROM Articulo WHERE IDArticulo = "+ID);
             ResultSet rs = stmt.getResultSet();
             rs.next();
-            nombre=rs.getString("Titulo");
+            titulo=rs.getString("Titulo");
             rs.close();
             return(titulo);
         }
@@ -38,7 +38,7 @@ public class articulo {
             stmt.executeQuery("SELECT Autor FROM Articulo WHERE IDArticulo= "+ID);
             ResultSet rs = stmt.getResultSet();
             rs.next();
-            d=rs.getDouble("Autor");
+            autor=rs.getString("Autor");
             rs.close();
             return(autor);
         }
@@ -53,7 +53,7 @@ public class articulo {
             stmt.executeQuery("SELECT Longitud FROM Articulo WHERE IDArticulo = "+ID);
             ResultSet rs = stmt.getResultSet();
             rs.next();
-            nombre=rs.getString("Longitud");
+            longitud=rs.getInt("Longitud");
             rs.close();
             return(longitud);
         }
@@ -65,10 +65,10 @@ public class articulo {
     public int getVotos(int ID){
         int cant;
         try {
-            stmt.executeQuery("SELECT Voto FROM Articulo WHERE IDArticulo = "+ID);
+            stmt.executeQuery("SELECT Votos FROM Articulo WHERE IDArticulo = "+ID);
             ResultSet rs = stmt.getResultSet();
             rs.next();
-            nombre=rs.getString("Votos");
+            cant=rs.getInt("Votos");
             rs.close();
             return(cant);
         }
@@ -113,15 +113,31 @@ public class articulo {
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void crearArticulo(String autor, String titulo, int d){
+    public void crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, boolean P, String texto){
         try{
-            String s = "INSERT INTO Articulo (Autor, Longitud, Titulo)" + " VALUES ('"+ autor + "' , " + d + ",'" + titulo "')";
+            String s = "INSERT INTO Articulo (Autor, Longitud, Titulo, Votos, IDEdicion, IDCuenta, Publicado, Texto)";
+            s+= " VALUES ('" + autor + "' , " + l + ",'" + titulo " , " + v + " , " + IDE + " , " + IDC + " , " + P + " , " + texto + "')";
             System.out.println(s); 
             stmt.executeUpdate(s);
         }
         catch(Exception e){
             System.out.println ("Cannot update database" + e );
         }
+    }
+    public String getTexto(int ID){
+        String texto="";
+        try {
+            stmt.executeQuery("SELECT Texto FROM Articulo WHERE IDArticulo= "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            texto=rs.getString("Texto");
+            rs.close();
+            return(texto);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getTexto()"+e);
+        }
+        return texto;
     }
     public void revisarArticulo() {
       //pending
@@ -131,5 +147,8 @@ public class articulo {
     }
     public void seleccionarArticulo() {
         //update votos. //pending
+    }
+    public void setPublicado(boolean p){
+        
     }
 }
