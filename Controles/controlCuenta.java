@@ -3,10 +3,10 @@ import entidades.cuenta;
 import java.util.Date;
 import java.util.Calendar;
 
-public class controlSuscripcion {
+public class controlCuenta {
    cuenta c;
 
-   public controlSuscripcion(){
+   public controlCuenta(){
      c = new cuenta(); //Asume que la instancia persiste durante la sesion
    }  
    //Valida si la cuenta existe en la base de datos
