@@ -20,6 +20,21 @@ public class suscripcion {
             System.out.println("Cannot connect to database server");
         }
     }
+    public int getSuscripcion(int ID){
+        int s=0;
+        try {
+            stmt.executeQuery("SELECT IDSuscripcion FROM Suscripcion WHERE IDCuenta = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            s=rs.getInt("IDSuscripcion");
+            rs.close();
+            return(s);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getSuscripcion()"+e);
+        }
+        return s;
+    }
     public String getTipo(int ID){
         String tipo="";
         try {
@@ -108,7 +123,7 @@ public class suscripcion {
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void setDuracion(int ID, String duracion){
+    public void setDuracion(int ID, int duracion){
         try {
            String s = "UPDATE Suscripcion SET Duracion = " + duracion + " WHERE IDSuscripcion = " + ID;
            stmt.executeUpdate(s);
