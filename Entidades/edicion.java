@@ -20,6 +20,21 @@ public class edicion {
             System.out.println("Cannot connect to database server");
         }
     }
+    public boolean validarEdicion(int ID){
+        int IDE;
+        try {
+            stmt.executeQuery("SELECT IDEdicion FROM Edicion WHERE IDEdicion = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            IDE=rs.getInt("IDEdicion");
+            rs.close();
+            return IDE==ID;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getID()"+e);
+        }
+        return false;
+    }
     public int getNumero(int ID){
         int numero=0;
         try {
@@ -48,7 +63,7 @@ public class edicion {
         catch(SQLException e){
             System.out.println("Cannot getCantidad()"+e);
         }
-        return null;
+        return cantidad;
     }
     public void setNumero(int ID, int numero){
         try {

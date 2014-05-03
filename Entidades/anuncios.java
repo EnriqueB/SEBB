@@ -20,6 +20,21 @@ public class anuncios {
             System.out.println("Cannot connect to database server");
         }
     }
+    public boolean validarAnuncios(int ID){
+        int IDA;
+        try {
+            stmt.executeQuery("SELECT IDAnuncios FROM Anuncios WHERE IDAnuncios = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            IDA=rs.getInt("IDAnuncios");
+            rs.close();
+            return IDA==ID;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getID()"+e);
+        }
+        return false;
+    }
     public String getNombre(int ID){
         String nombre="";
         try {
@@ -51,6 +66,29 @@ public class anuncios {
             System.out.println("Cannot getFecha()"+e);
         }
         return null;
+    }
+    public int[] getAnuncios(int ID){
+        //not sure if this works
+        int count;
+        int [] a = new int[100];
+        try {
+            stmt.executeQuery("SELECT IDEdicion, COUNT(*) as cant FROM Edicion-Anuncios WHERE IDEdicion = "+ID+" GROUP BY IDEdicion");
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            count=rs.getInt("cant");
+            rs.close();
+            stmt.executeQuery("Select IDAnuncio FROM Edicion-Anuncios WHERE IDEdicion = "+ID);
+            rs.next();
+            for(int i=0; i<count; i++){
+                a[i]=rs.getByte("IDAnuncio");
+                rs.next();
+            }
+            return a;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getAnuncios()"+e);
+        }
+        return a;
     }
     public void setNombre(int ID, String nombre){
         try {
@@ -90,6 +128,26 @@ public class anuncios {
         }
         catch(Exception e){
             System.out.println ("Cannot update database" + e );
+        }
+    }
+    public void crearAnuncios(int ID, int[] a){
+        try {
+            for(int i=0; i<a.length; i++){
+                String s = "INSERT INTO Edicion-Anuncios (IDEdicion, IDAnuncios) VALUES ("+ ID+" , "+ a[i]+")";
+                stmt.executeUpdate(s);
+            }
+        } 
+        catch (SQLException e) {
+            System.out.println ("Cannot execute disposicion()" + e);
+        }
+    }
+    public void insertarAnuncio(int ID, int IDA){
+        try {
+            String s = "INSERT INTO Edicion-Anuncios (IDEdicion, IDAnuncios) VALUES ("+ ID+" , "+IDA+")";
+            stmt.executeUpdate(s);
+        } 
+        catch (SQLException e) {
+            System.out.println ("Cannot execute disposicion()" + e);
         }
     }
 }
