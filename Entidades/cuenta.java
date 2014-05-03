@@ -147,4 +147,12 @@ public class cuenta{
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
+    public void cancelar(int ID) {
+        try {
+            stmt.executeQuery("DELETE FROM Cuenta WHERE IDCuenta = "+ID);
+        }
+        catch (SQLException e) {
+            System.out.println ("Cannot execute cancelar()" + e);
+        }
+    }
 }
