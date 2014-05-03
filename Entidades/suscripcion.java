@@ -137,13 +137,28 @@ public class suscripcion {
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void setIDCuenta(int ID, String idCuenta){
+    public void setIDCuenta(int ID, int idCuenta){
         try {
            String s = "UPDATE Suscripcion SET IDCuenta = " + idCuenta + " WHERE IDSuscripcion = " + ID;
            stmt.executeUpdate(s);
         } 
         catch (SQLException e) {
             System.out.println ("Cannot execute disposicion()" + e);
+        }
+    }
+    public void crearSuscripcion(int IDC, int IDS, double duracion, String tipo){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar ini = Calendar.getInstance();
+        Calendar fin = Calendar.getInstance();
+        fin.add(Calendar.DATE, (int)duracion);
+        try{
+            String s = "INSERT INTO Suscripcion (IDSuscripcion, Tipo, Duracion, Inicio, Fin, IDCuenta)" + " VALUES ("+IDS+" , "+ tipo + " , " + duracion + " , " + sdf.format(ini.getTime())
+                        + " , " + sdf.format(fin.getTime()) +" , "+ IDC+")";
+            System.out.println(s); 
+            stmt.executeUpdate(s);
+        }
+        catch(Exception e){
+            System.out.println ("Cannot update database" + e );
         }
     }
 }
