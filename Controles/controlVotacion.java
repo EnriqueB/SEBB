@@ -1,5 +1,7 @@
 package controles;
 import entidades.cuenta;
+import entidades.articulo;
+import entidades.juez;
 
 public class controlVotacion {
    cuenta c;

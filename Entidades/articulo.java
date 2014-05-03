@@ -92,6 +92,21 @@ public class articulo {
         }
         return 0;
     }
+    public boolean getPublicado(int ID){
+        boolean p=false;
+        try {
+            stmt.executeQuery("SELECT Publicado FROM Articulo WHERE IDArticulo = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            p=rs.getBoolean("Publicado");
+            rs.close();
+            return(p);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getPublicado()"+e);
+        }
+        return p;       
+    }
     public void setTitulo(int ID, String titulo){
         try {
            String s = "UPDATE Articulo SET Titulo = " + titulo + " WHERE IDArticulo = " + ID;
@@ -101,7 +116,7 @@ public class articulo {
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-   public void setAutor(int ID, String autor){
+    public void setAutor(int ID, String autor){
         try {
            String s = "UPDATE Articulo SET Autor = " + autor + " WHERE IDArticulo = " + ID;
            stmt.executeUpdate(s);
@@ -127,6 +142,9 @@ public class articulo {
         catch (SQLException e) {
             System.out.println ("Cannot execute disposicion()" + e);
         }
+    }
+    public void setPublicado(boolean p){
+        //update database
     }
     public void crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, boolean P, String texto){
         try{
@@ -162,8 +180,5 @@ public class articulo {
     }
     public void seleccionarArticulo() {
         //update votos. //pending
-    }
-    public void setPublicado(boolean p){
-        //update database
     }
 }

@@ -48,49 +48,64 @@ public class cuenta{
         return nombre;
     }
     public String getCorreo(int ID){
-        String nombre="";
+        String correo="";
         try {
             stmt.executeQuery("SELECT Correo FROM Cuenta WHERE IDCuenta = "+ID);
             ResultSet rs = stmt.getResultSet();
             rs.next();
-            nombre=rs.getString("Correo");
+            correo=rs.getString("Correo");
             rs.close();
-            return(nombre);
+            return(correo);
         }
         catch(SQLException e){
             System.out.println("Cannot getCorreo()"+e);
         }
-        return nombre;
+        return correo;
     }
     public String getTelefono(int ID){
-        String nombre="";
+        String telefono="";
         try {
             stmt.executeQuery("SELECT Telefono FROM Cuenta WHERE IDCuenta = "+ID);
             ResultSet rs = stmt.getResultSet();
             rs.next();
-            nombre=rs.getString("Telefono");
+            telefono=rs.getString("Telefono");
             rs.close();
-            return(nombre);
+            return(telefono);
         }
         catch(SQLException e){
             System.out.println("Cannot getTelefono()"+e);
         }
-        return nombre;
+        return telefono;
     }
     public String getDireccion(int ID){
-        String nombre="";
+        String direccion="";
         try {
             stmt.executeQuery("SELECT Direccion FROM Cuenta WHERE IDCuenta = "+ID);
             ResultSet rs = stmt.getResultSet();
             rs.next();
-            nombre=rs.getString("Direccion");
+            direccion=rs.getString("Direccion");
             rs.close();
-            return(nombre);
+            return(direccion);
         }
         catch(SQLException e){
             System.out.println("Cannot getDireccion()"+e);
         }
-        return nombre;
+        return direccion;
+    }
+    public String getTipo(int ID){
+        String tipo="";
+        try {
+            stmt.executeQuery("SELECT Tipo FROM Cuenta WHERE IDCuenta = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            tipo=rs.getString("Tipo");
+            rs.close();
+            return(tipo);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getTipo()"+e);
+        }
+        return tipo;
     }
     public void setNombre(int ID, String nombre){
         try {
@@ -128,9 +143,19 @@ public class cuenta{
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void crearCuenta(int ID, String nombre, String correo, String telefono, String direccion){
+    public void setTipo(int ID, String tipo){
+        try {
+           String s = "UPDATE Cuenta SET Tipo = '" + tipo + "' WHERE IDCuenta = " + ID;
+           stmt.executeUpdate(s);
+        } 
+        catch (SQLException e) {
+            System.out.println ("Cannot execute disposicion()" + e);
+        }
+    }
+    public void crearCuenta(int ID, String nombre, String correo, String telefono, String direccion, String tipo){
         try{
-            String s = "INSERT INTO Cuenta (IDCuenta, Nombre, Correo, Telefono, Direccion)" + " VALUES ("+ID+" , '"+ nombre + "' , " + correo + " , " + telefono + " , '" + direccion + "')";
+            String s = "INSERT INTO Cuenta (IDCuenta, Nombre, Correo, Telefono, Direccion, Tipo)" + " VALUES ("+ID+" , '"+ nombre + "' , " + correo + " , " 
+                    + telefono + " , '" + direccion + "' , " + tipo+")";
             System.out.println(s); 
             stmt.executeUpdate(s);
         }
@@ -138,9 +163,10 @@ public class cuenta{
             System.out.println ("Cannot update database" + e );
         }
     }
-    public void modificarCuenta(int ID, String nombre, String correo, String telefono, String direccion){
+    public void modificarCuenta(int ID, String nombre, String correo, String telefono, String direccion, String tipo){
         try {
-           String s = "UPDATE Cuenta SET Nombre = " + nombre + " , Correo = " + correo + " , Telefono = " + telefono + " , Direccion = '" + direccion +"' WHERE IDCuenta = " + ID;
+           String s = "UPDATE Cuenta SET Nombre = " + nombre + " , Correo = " + correo + " , Telefono = " + telefono + 
+                   " , Direccion = '" + direccion +"' , Tipo = " + tipo + " WHERE IDCuenta = " + ID;
            stmt.executeUpdate(s);
         } 
         catch (SQLException e) {
