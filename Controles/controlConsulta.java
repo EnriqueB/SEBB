@@ -4,11 +4,11 @@ import entidades.suscripcion;
 import java.util.Date;
 import java.util.Calendar;
 
-public class controlSuscripcion {
+public class controlConsulta {
    cuenta c;
    suscripcion s;
 
-   public controlSuscripcion(){
+   public controlConsulta(){
      c = new cuenta(); //Asume que la instancia persiste durante la sesion
      s = new suscripcion();
    }  
