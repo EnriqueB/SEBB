@@ -20,6 +20,21 @@ public class suscripcion {
             System.out.println("Cannot connect to database server");
         }
     }
+    public boolean validar(int ID) {
+        int s=0;
+        try {
+            stmt.executeQuery("SELECT IDSuscripcion FROM Suscripcion WHERE IDCuenta = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            s=rs.getInt("IDSuscripcion");
+            rs.close();
+            return true;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot validar()"+e);
+        }
+        return false;
+    }
     public int getSuscripcion(int ID){
         int s=0;
         try {
