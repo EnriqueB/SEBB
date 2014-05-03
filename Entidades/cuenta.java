@@ -18,17 +18,17 @@ public class cuenta{
         }
     }
     public boolean validar(int ID) {
-        String nombre="";
+        int IDC;
         try {
-            stmt.executeQuery("SELECT Nombre FROM Cuenta WHERE IDCuenta = "+ID);
+            stmt.executeQuery("SELECT IDCuenta FROM Cuenta WHERE IDCuenta = "+ID);
             ResultSet rs = stmt.getResultSet();
             rs.next();
-            nombre=rs.getString("Nombre");
+            IDC=rs.getInt("IDCuenta");
             rs.close();
-            return true;
+            return IDC==ID;
         }
         catch(SQLException e){
-            System.out.println("Cannot getNombre()"+e);
+            System.out.println("Cannot getID()"+e);
         }
         return false;
     }

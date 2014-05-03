@@ -17,6 +17,21 @@ public class articulo {
             System.out.println("Cannot connect to database server");
         }
     }
+    public boolean validar(int ID) {
+        int IDC;
+        try {
+            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE IDArticulo = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            IDC=rs.getInt("IDArticulo");
+            rs.close();
+            return IDC==ID;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getID()"+e);
+        }
+        return false;
+    }
     public String getTitulo(int ID){
         String titulo="";
         try {
@@ -149,6 +164,6 @@ public class articulo {
         //update votos. //pending
     }
     public void setPublicado(boolean p){
-        
+        //update database
     }
 }

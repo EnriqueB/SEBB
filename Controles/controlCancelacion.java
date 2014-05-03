@@ -19,7 +19,7 @@ public class controlCancelacion {
    }
    public void cancelarCuenta(int ncuenta) {
      if(s.validar(ncuenta)) {
-       s.cancelar(s.getSuscripcion(IDC));
+       s.cancelar(s.getSuscripcion(ncuenta));
        c.cancelar(ncuenta);
      } else {
        c.cancelar(ncuenta);
