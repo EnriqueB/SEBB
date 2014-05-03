@@ -28,7 +28,4 @@ public class controlSuscripcion {
    public void actualizaDireccion(int ncuenta, String direccion){
        c.setDireccion(ncuenta, direccion);
    }
-   public void cancelarCuenta(int ncuenta) {
-     //pendiente, depende de suscripciones tmb no se puede dejar una suscripcion abierta de una cuenta no existente.
-   }
 }
