@@ -161,11 +161,11 @@ public class suscripcion {
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void crearSuscripcion(int IDC, int IDS, double duracion, String tipo){
+    public void crearSuscripcion(int IDC, int IDS, int duracion, String tipo){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar ini = Calendar.getInstance();
         Calendar fin = Calendar.getInstance();
-        fin.add(Calendar.DATE, (int)duracion);
+        fin.add(Calendar.DATE, duracion);
         try{
             String s = "INSERT INTO Suscripcion (IDSuscripcion, Tipo, Duracion, Inicio, Fin, IDCuenta)" + " VALUES ("+IDS+" , "+ tipo + " , " + duracion + " , " + sdf.format(ini.getTime())
                         + " , " + sdf.format(fin.getTime()) +" , "+ IDC+")";
