@@ -17,6 +17,21 @@ public class cuenta{
             System.out.println("Cannot connect to database server");
         }
     }
+    public boolean validar(int ID) {
+        String nombre="";
+        try {
+            stmt.executeQuery("SELECT Nombre FROM Cuenta WHERE IDCuenta = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            nombre=rs.getString("Nombre");
+            rs.close();
+            return true;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getNombre()"+e);
+        }
+        return false;
+    }
     public String getNombre(int ID){
         String nombre="";
         try {
