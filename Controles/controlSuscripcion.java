@@ -43,5 +43,7 @@ public class controlSuscripcion {
    public void actualizaFin(int IDC, Calendar c){
        s.setFin(s.getSuscripcion(IDC), c);
    }
-   
+   public void cancelarSuscripcion(int IDC) {
+      s.cancelar(s.getSuscripcion(IDC));
+   }
 }
