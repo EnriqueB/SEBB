@@ -176,4 +176,12 @@ public class suscripcion {
             System.out.println ("Cannot update database" + e );
         }
     }
+    public void cancelar(int ID) {
+        try {
+            stmt.executeQuery("DELETE FROM Suscripcion WHERE IDSuscripcion = "+ID);
+        }
+        catch (SQLException e) {
+            System.out.println ("Cannot execute cancelar()" + e);
+        }
+    }
 }
