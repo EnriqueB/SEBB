@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.*;
 import controles.ControlInicioSesion;
 
-public class interfazInicioSesion extends HttpServlet {
+public class InterfazInicioSesion extends HttpServlet {
   HttpServletResponse thisResponse;
   HttpServletRequest thisRequest;
   PrintWriter out;
@@ -70,7 +70,7 @@ public class interfazInicioSesion extends HttpServlet {
 
   public void desplegarDatos(){  
     String nombre = thisRequest.getParameter("cuenta").trim();
-    String [] datos = ci.getDatos(nombre);
+    String [] datos = ci.obtenerDatos(nombre);
       out.println("<p>Gracias por iniciar sesion</p>");
       out.println("<p>Sus datos son:</p>");
       out.println("<p>Nombre: " + datos[0] + " </p>");

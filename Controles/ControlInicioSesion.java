@@ -11,6 +11,6 @@ public class ControlInicioSesion {
        return cuenta.autenticar(n, p);
    }
    public String [] obtenerDatos(String n){
-       return (cuenta.getDatos(n));
+       return cuenta.getDatos(n);
    }
 }
