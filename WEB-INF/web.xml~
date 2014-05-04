@@ -11,30 +11,93 @@
      -->
 
     <servlet>
-      <servlet-name>Extraer</servlet-name>
-      <servlet-class>interfaces.InterfazExtraccion</servlet-class>
+      <servlet-name>Inicio</servlet-name>
+      <servlet-class>interfaces.InterfazInicioSesion</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Extraer</servlet-name>
-        <url-pattern>/Extraer</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-      <servlet-name>Consulta</servlet-name>
-      <servlet-class>interfaces.InterfazConsulta</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Consulta</servlet-name>
-        <url-pattern>/Consulta</url-pattern>
+        <servlet-name>Inicio</servlet-name>
+        <url-pattern>/Inicio</url-pattern>
     </servlet-mapping>    
 
     <servlet>
-      <servlet-name>Transferencia</servlet-name>
-      <servlet-class>interfaces.InterfazTransferencia</servlet-class>
+      <servlet-name>Registro</servlet-name>
+      <servlet-class>interfaces.InterfazRegistro</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Transferencia</servlet-name>
-        <url-pattern>/Transferencia</url-pattern>
+        <servlet-name>Registro</servlet-name>
+        <url-pattern>/Registro</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+      <servlet-name>Articulos</servlet-name>
+      <servlet-class>interfaces.InterfazArticulos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Articulos</servlet-name>
+        <url-pattern>/Articulos</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+      <servlet-name>Correo</servlet-name>
+      <servlet-class>interfaces.InterfazCorreo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Correo</servlet-name>
+        <url-pattern>/Correo</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Cuenta</servlet-name>
+      <servlet-class>interfaces.InterfazCuenta</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Cuenta</servlet-name>
+        <url-pattern>/Cuenta</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Pago</servlet-name>
+      <servlet-class>interfaces.InterfazPago</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Pago</servlet-name>
+        <url-pattern>/Pago</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Publicacion</servlet-name>
+      <servlet-class>interfaces.InterfazPublicacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Publicacion</servlet-name>
+        <url-pattern>/Publicacion</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Publicidad</servlet-name>
+      <servlet-class>interfaces.InterfazPublicidad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Publicidad</servlet-name>
+        <url-pattern>/Publicidad</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Suscripcion</servlet-name>
+      <servlet-class>interfaces.InterfazSuscripcion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Suscripcion</servlet-name>
+        <url-pattern>/Suscripcion</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Votacion</servlet-name>
+      <servlet-class>interfaces.InterfazVotacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Votacion</servlet-name>
+        <url-pattern>/Votacion</url-pattern>
     </servlet-mapping>    
 
 <!--

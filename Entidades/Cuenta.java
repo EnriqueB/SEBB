@@ -17,15 +17,15 @@ public class Cuenta{
             System.out.println("Cannot connect to database server");
         }
     }
-    public boolean validar(int ID) {
-        int IDC;
+    public boolean validar(String nombre) {
+        String n="";
         try {
-            stmt.executeQuery("SELECT IDCuenta FROM Cuenta WHERE IDCuenta = "+ID);
+            stmt.executeQuery("SELECT IDCuenta FROM Cuenta WHERE Nombre = '" + nombre + "'");
             ResultSet rs = stmt.getResultSet();
             rs.next();
-            IDC=rs.getInt("IDCuenta");
+            n=rs.getString("Nombre");
             rs.close();
-            return IDC==ID;
+            return n==nombre;
         }
         catch(SQLException e){
             System.out.println("Cannot getID()"+e);
@@ -176,16 +176,18 @@ public class Cuenta{
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void crearCuenta(int ID, String nombre, String correo, String telefono, String direccion, String tipo, String pass){
+    public boolean crearCuenta(int ID, String nombre, String correo, String telefono, String direccion, String tipo, String pass){
         try{
-            String s = "INSERT INTO Cuenta (IDCuenta, Nombre, Correo, Telefono, Direccion, Tipo, Conectado)" + " VALUES ("+ID+" , '"+ nombre + "' , " + correo + " , " 
-                    + telefono + " , '" + direccion + "' , " + tipo+" , " + pass + " , " + 0 + ")";
+            String s = "INSERT INTO Cuenta (IDCuenta, Nombre, Correo, Telefono, Direccion, Tipo, Password, Conectado)" + " VALUES ("+ID+" , '"+ nombre + "' , '" + correo + "' , '" 
+                    + telefono + "' , '" + direccion + "' , '" + tipo+"' , '" + pass + "' , " + 0 + ")";
             System.out.println(s); 
             stmt.executeUpdate(s);
         }
         catch(Exception e){
             System.out.println ("Cannot update database" + e );
+            return false;
         }
+        return true;
     }
     public void modificarCuenta(int ID, String nombre, String correo, String telefono, String direccion, String tipo, String pass){
         try {
@@ -241,12 +243,42 @@ public class Cuenta{
     }
     public void conect(String n){
         try {
-           String s = "UPDATE Cuenta SET Conectado = '" + 1 + "' WHERE Nombre = '" + n+"'";
+           String s = "UPDATE Cuenta SET Conectado = 1 WHERE Nombre = '" + n+"'";
            stmt.executeUpdate(s);
         } 
         catch (SQLException e) {
             System.out.println ("Cannot execute disposicion()" + e);
         }
+    }
+    public String getConectado(){
+        String nombre="";
+        try {
+            stmt.executeQuery("SELECT Nombre FROM Cuenta WHERE Conectado = 1");
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            nombre=rs.getString("Nombre");
+            rs.close();
+            return nombre;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getConectado()"+e);
+        }
+        return nombre;
+    }
+    public int next(){
+        int n=0;
+        try {
+            stmt.executeQuery("SELECT IDCuenta FROM Cuenta ORDER BY IDCuenta DESC LIMIT 1");
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            n=rs.getInt("IDCuenta");
+            rs.close();
+            return n+1;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot next()"+e);
+        }
+        return n;
     }
 }
 

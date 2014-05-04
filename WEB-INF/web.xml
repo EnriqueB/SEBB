@@ -19,6 +19,14 @@
         <url-pattern>/Inicio</url-pattern>
     </servlet-mapping>    
 
+    <servlet>
+      <servlet-name>Registro</servlet-name>
+      <servlet-class>interfaces.InterfazRegistro</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Registro</servlet-name>
+        <url-pattern>/Registro</url-pattern>
+    </servlet-mapping>
 
     <servlet>
       <servlet-name>Articulos</servlet-name>

@@ -16,4 +16,7 @@ public class ControlInicioSesion {
    public String [] obtenerDatos(String n){
        return cuenta.getDatos(n);
    }
+   public String getConected(){
+       return cuenta.getConectado();
+   }
 }
