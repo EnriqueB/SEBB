@@ -32,40 +32,6 @@ public class Cuenta{
         }
         return false;
     }
-    public boolean autenticar(String n, String p){
-        int ID=-1;
-        try {
-            stmt.executeQuery("SELECT IDCuenta FROM Cuenta WHERE Nombre = "+n + " AND Password = "+ p);
-            ResultSet rs = stmt.getResultSet();
-            rs.next();
-            ID=rs.getInt("IDcuenta");
-            rs.close();
-            return(ID>0);
-        }
-        catch(SQLException e){
-            System.out.println("Cannot autenticar()"+e);
-        }
-        return false;
-    }
-    public String [] getDatos(String n){
-        String [] arr = new String [5];
-        try {
-            stmt.executeQuery("SELECT Nombre, Correo, Telefono, Direccion, Tipo FROM Cuenta WHERE Nombre = "+n);
-            ResultSet rs = stmt.getResultSet();
-            rs.next();
-            arr[0]=rs.getString("Nombre");
-            arr[1]=rs.getString("Correo");
-            arr[2]=rs.getString("Telefono");
-            arr[3]=rs.getString("Direccion");
-            arr[4]=rs.getString("Tipo");
-            rs.close();
-            return(arr);
-        }
-        catch(SQLException e){
-            System.out.println("Cannot autenticar()"+e);
-        }
-        return arr;        
-    }
     public String getNombre(int ID){
         String nombre="";
         try {
