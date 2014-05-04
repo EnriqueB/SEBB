@@ -75,7 +75,7 @@ public class InterfazRegistro extends HttpServlet {
     String tel = thisRequest.getParameter("tel").trim();
     String dir = thisRequest.getParameter("dir").trim();
     int ID=cu.getNextID();
-    boolean posible = cu.crearCuenta(ID, nombre, mail, tel, dir, "usuario", pass);
+    boolean posible = cu.crearCuenta(ID, nombre, mail, tel, dir, "Usuario", pass);
     if (posible){
       bienvenida();
     }
