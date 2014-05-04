@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"  
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  
+           http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"  
+         version="2.5">
+
+    <!-- A continuacion deben declararse todas las Interfaces que se implementan como
+         Servlets en el sistema. Para cada Interfaz deben declararse los tags
+         <servlet> y <servlet-mapping>  
+     -->
+
+    <servlet>
+      <servlet-name>Inicio</servlet-name>
+      <servlet-class>interfaces.InterfazInicioSesion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Inicio</servlet-name>
+        <url-pattern>/Inicio</url-pattern>
+    </servlet-mapping>    
+
+
+    <servlet>
+      <servlet-name>Articulos</servlet-name>
+      <servlet-class>interfaces.InterfazArticulos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Articulos</servlet-name>
+        <url-pattern>/Articulos</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+      <servlet-name>Correo</servlet-name>
+      <servlet-class>interfaces.InterfazCorreo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Correo</servlet-name>
+        <url-pattern>/Correo</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Cuenta</servlet-name>
+      <servlet-class>interfaces.InterfazCuenta</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Cuenta</servlet-name>
+        <url-pattern>/Cuenta</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Pago</servlet-name>
+      <servlet-class>interfaces.InterfazPago</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Pago</servlet-name>
+        <url-pattern>/Pago</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Publicacion</servlet-name>
+      <servlet-class>interfaces.InterfazPublicacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Publicacion</servlet-name>
+        <url-pattern>/Publicacion</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Publicidad</servlet-name>
+      <servlet-class>interfaces.InterfazPublicidad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Publicidad</servlet-name>
+        <url-pattern>/Publicidad</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Suscripcion</servlet-name>
+      <servlet-class>interfaces.InterfazSuscripcion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Suscripcion</servlet-name>
+        <url-pattern>/Suscripcion</url-pattern>
+    </servlet-mapping>    
+
+    <servlet>
+      <servlet-name>Votacion</servlet-name>
+      <servlet-class>interfaces.InterfazVotacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Votacion</servlet-name>
+        <url-pattern>/Votacion</url-pattern>
+    </servlet-mapping>    
+
+<!--
+<servlet>
+    <servlet-name>HelloWorld</servlet-name> 
+    <servlet-class>com.swengsol.HelloWorldServlet</servlet-class> 
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloWorld</servlet-name> 
+    <url-pattern>/HelloWorld</url-pattern> 
+  </servlet-mapping>
+-->  
+</web-app>

@@ -1,10 +1,10 @@
 package entidades;
 import java.sql.*;
 import java.io.*;
-public class cuenta{
+public class Cuenta{
     Connection conn;
     Statement stmt;
-    public cuenta(){
+    public Cuenta(){
         try{
             String userName="root";
             String password="password";
@@ -31,6 +31,40 @@ public class cuenta{
             System.out.println("Cannot getID()"+e);
         }
         return false;
+    }
+    public boolean autenticar(String n, String p){
+        int ID=-1;
+        try {
+            stmt.executeQuery("SELECT IDCuenta FROM Cuenta WHERE Nombre = "+n + " AND Password = "+ p);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            ID=rs.getInt("IDcuenta");
+            rs.close();
+            return(ID>0);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot autenticar()"+e);
+        }
+        return false;
+    }
+    public String [] getDatos(String n){
+        String [] arr = new String [5];
+        try {
+            stmt.executeQuery("SELECT Nombre, Correo, Telefono, Direccion, Tipo FROM Cuenta WHERE Nombre = "+n);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            arr[0]=rs.getString("Nombre");
+            arr[1]=rs.getString("Correo");
+            arr[2]=rs.getString("Telefono");
+            arr[3]=rs.getString("Direccion");
+            arr[4]=rs.getString("Tipo");
+            rs.close();
+            return(arr);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot autenticar()"+e);
+        }
+        return arr;        
     }
     public String getNombre(int ID){
         String nombre="";
@@ -107,6 +141,21 @@ public class cuenta{
         }
         return tipo;
     }
+    public String getPassword(int ID){
+        String pass="";
+        try {
+            stmt.executeQuery("SELECT Password FROM Cuenta WHERE IDCuenta = "+ID);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            pass=rs.getString("Password");
+            rs.close();
+            return(pass);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getPassword()"+e);
+        }
+        return pass;
+    }
     public void setNombre(int ID, String nombre){
         try {
            String s = "UPDATE Cuenta SET Nombre = '" + nombre + "' WHERE IDCuenta = " + ID;
@@ -152,10 +201,19 @@ public class cuenta{
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void crearCuenta(int ID, String nombre, String correo, String telefono, String direccion, String tipo){
+    public void setPassword(int ID, String pass){
+        try {
+           String s = "UPDATE Cuenta SET Password = '" + pass + "' WHERE IDCuenta = " + ID;
+           stmt.executeUpdate(s);
+        } 
+        catch (SQLException e) {
+            System.out.println ("Cannot execute disposicion()" + e);
+        }
+    }
+    public void crearCuenta(int ID, String nombre, String correo, String telefono, String direccion, String tipo, String pass){
         try{
             String s = "INSERT INTO Cuenta (IDCuenta, Nombre, Correo, Telefono, Direccion, Tipo)" + " VALUES ("+ID+" , '"+ nombre + "' , " + correo + " , " 
-                    + telefono + " , '" + direccion + "' , " + tipo+")";
+                    + telefono + " , '" + direccion + "' , " + tipo+" , " + pass+ ")";
             System.out.println(s); 
             stmt.executeUpdate(s);
         }
@@ -163,10 +221,10 @@ public class cuenta{
             System.out.println ("Cannot update database" + e );
         }
     }
-    public void modificarCuenta(int ID, String nombre, String correo, String telefono, String direccion, String tipo){
+    public void modificarCuenta(int ID, String nombre, String correo, String telefono, String direccion, String tipo, String pass){
         try {
            String s = "UPDATE Cuenta SET Nombre = " + nombre + " , Correo = " + correo + " , Telefono = " + telefono + 
-                   " , Direccion = '" + direccion +"' , Tipo = " + tipo + " WHERE IDCuenta = " + ID;
+                   " , Direccion = '" + direccion +"' , Tipo = " + tipo + " , Password = " + pass+ " WHERE IDCuenta = " + ID;
            stmt.executeUpdate(s);
         } 
         catch (SQLException e) {
@@ -182,3 +240,4 @@ public class cuenta{
         }
     }
 }
+
