@@ -10,6 +10,9 @@ public class ControlInicioSesion {
    public boolean inicioSesion(String n, String p){
        return cuenta.autenticar(n, p);
    }
+   public void conectar(String n){
+       cuenta.conect(n);
+   }
    public String [] obtenerDatos(String n){
        return cuenta.getDatos(n);
    }

@@ -178,8 +178,8 @@ public class Cuenta{
     }
     public void crearCuenta(int ID, String nombre, String correo, String telefono, String direccion, String tipo, String pass){
         try{
-            String s = "INSERT INTO Cuenta (IDCuenta, Nombre, Correo, Telefono, Direccion, Tipo)" + " VALUES ("+ID+" , '"+ nombre + "' , " + correo + " , " 
-                    + telefono + " , '" + direccion + "' , " + tipo+" , " + pass+ ")";
+            String s = "INSERT INTO Cuenta (IDCuenta, Nombre, Correo, Telefono, Direccion, Tipo, Conectado)" + " VALUES ("+ID+" , '"+ nombre + "' , " + correo + " , " 
+                    + telefono + " , '" + direccion + "' , " + tipo+" , " + pass + " , " + 0 + ")";
             System.out.println(s); 
             stmt.executeUpdate(s);
         }
@@ -238,6 +238,15 @@ public class Cuenta{
             System.out.println("Cannot autenticar()"+e);
         }
         return arr;        
+    }
+    public void conect(String n){
+        try {
+           String s = "UPDATE Cuenta SET Conectado = '" + 1 + "' WHERE Nombre = '" + n+"'";
+           stmt.executeUpdate(s);
+        } 
+        catch (SQLException e) {
+            System.out.println ("Cannot execute disposicion()" + e);
+        }
     }
 }
 

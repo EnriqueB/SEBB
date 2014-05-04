@@ -35,7 +35,6 @@ public class InterfazInicioSesion extends HttpServlet {
       iniciarSesion();  
     }else if(operacion.equals("iniciar")){
        inicioSesion();
-       desplegarDatos();
     } 
   }
   
@@ -63,9 +62,13 @@ public class InterfazInicioSesion extends HttpServlet {
     String nombre = thisRequest.getParameter("cuenta").trim();
     String pass = thisRequest.getParameter("password").trim();
     boolean existente = ci.inicioSesion(nombre, pass);
-    if (!existente){
-      iniciarSesion();
+    if (existente){
+      desplegarDatos();
     }
+    else{
+        iniciarSesion();
+    }
+    ci.conectar(nombre);
   }
 
   public void desplegarDatos(){  
