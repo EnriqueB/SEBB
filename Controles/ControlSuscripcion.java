@@ -13,8 +13,8 @@ public class ControlSuscripcion {
      s = new Suscripcion();
    }  
    //Valida si la cuenta existe en la base de datos
-   public boolean validarCuenta(int ncuenta){            
-      return(c.validar(ncuenta));
+   public boolean validarCuenta(String nombre){            
+      return(c.validar(nombre));
    }
    public void crearSuscripcion(int IDC, int IDS, int duracion, String tipo){
        s.crearSuscripcion(IDC, IDS, duracion, tipo);   
