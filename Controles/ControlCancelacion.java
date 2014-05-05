@@ -17,9 +17,9 @@ public class ControlCancelacion {
    public void cancelarSuscripcion(int IDC) {
       s.cancelar(s.getSuscripcion(IDC));
    }
-   public void cancelarCuenta(String nombre) {
-     if(s.validar(nombre)) {
-       s.cancelar(s.getSuscripcion(nombre));
+   public void cancelarCuenta(String nombre, int ncuenta) {
+     if(s.validar(ncuenta)) {
+       s.cancelar(s.getSuscripcion(ncuenta));
        c.cancelar(nombre);
      } else {
        c.cancelar(nombre);
