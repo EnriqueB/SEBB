@@ -14,7 +14,7 @@ public class ControlPublicidad {
        return e.validarEdicion(ID);
    }
    public boolean validarAnuncio(int ID){
-       return a.validarAnuncios(int ID);
+       return a.validarAnuncios(ID);
    }
    public boolean verificarExistencia(int IDE, int IDA){
        //revisa que no exista ya este anuncio para esa edicion
