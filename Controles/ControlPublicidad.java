@@ -1,7 +1,6 @@
 package controles;
 import entidades.Edicion;
 import entidades.Anuncios;
-import entidades.Articulo;
 
 public class ControlPublicidad {
    Edicion e;
@@ -9,7 +8,7 @@ public class ControlPublicidad {
    
    public ControlPublicidad(){
      e = new Edicion(); //Asume que la instancia persiste durante la sesion
-     a = new Articulo();
+     a = new Anuncios();
    }
    public boolean validarEdicion(int ID){
        return e.validarEdicion(ID);
