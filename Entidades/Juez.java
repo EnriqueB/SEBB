@@ -1,4 +1,8 @@
-class Juez extends Cuenta{
+package entidades;
+import entidades.Cuenta;
+import java.sql.*;
+import java.io.*;
+public class Juez extends Cuenta{
     public Juez(){
         super();
     }
@@ -13,7 +17,7 @@ class Juez extends Cuenta{
             rs.next();
             votos=rs.getInt("Votos");
             votos++;
-            String s = "UPDATE Votos SET Votos = " + votos + " WHERE IDArticulo = " + ID;
+            String s = "UPDATE Articulo SET Votos = " + votos + " WHERE IDArticulo = " + ID;
            stmt.executeUpdate(s);
         }
         catch(SQLException e){

@@ -11,8 +11,7 @@ public class InterfazRegistro extends HttpServlet {
   HttpServletRequest thisRequest;
   PrintWriter out;
   ControlCuenta cu;
-  boolean pass=false;
-  boolean nombreRep=false;
+
   //Es importante observar que todos los metodos definen la operacion GET para
   //que el metodo doGet sea el que se ejecuta al presionar el boton "Enviar". 
   public void doGet(HttpServletRequest request,
@@ -40,7 +39,7 @@ public class InterfazRegistro extends HttpServlet {
   }
   
   public void registrar(){
-    out.println("<p> Indique sus datos para el registro");
+    out.println("<p> Indique sus datos para el registro</p>");
     out.println("<p>Nombre</p>");
     out.println("<form method=\"GET\" action=\"Registro\">");
     out.println("<input type=\"hidden\" name=\"operacion\" value=\"registrar\"/>");

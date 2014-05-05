@@ -148,8 +148,8 @@ public class Articulo {
     }
     public void crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, boolean P, String texto){
         try{
-            String s = "INSERT INTO Articulo (Autor, Longitud, Titulo, Votos, IDEdicion, IDCuenta, Publicado, Texto)";
-            s+= " VALUES ('" + autor + "' , " + l + ",'" + titulo " , " + v + " , " + IDE + " , " + IDC + " , " + P + " , " + texto + "')";
+            String s = "INSERT INTO Articulo (Autor, Longitud, Titulo, Votos, IDEdicion, IDCuenta, Publicado, Texto)"
+                    + " VALUES ('" + autor + "' , " + l + " , '" + titulo + "' , " + v + " , " + IDE + " , " + IDC + " , " + 0 + " , '" + texto +  "')";
             System.out.println(s); 
             stmt.executeUpdate(s);
         }

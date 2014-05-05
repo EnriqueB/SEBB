@@ -32,10 +32,25 @@ public class Cuenta{
         }
         return false;
     }
+    public int getID(String nombre){
+        int ID=0;
+        try {
+            stmt.executeQuery("SELECT IDCuenta FROM Cuenta WHERE Nombre = '"+nombre+"'");
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            ID=rs.getInt("IDCuenta");
+            rs.close();
+            return ID;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getID()"+e);
+        }
+        return ID;
+    }
     public String getNombre(int ID){
         String nombre="";
         try {
-            stmt.executeQuery("SELECT Nombre FROM Cuenta WHERE IDCuenta = '"+ID+"'");
+            stmt.executeQuery("SELECT Nombre FROM Cuenta WHERE IDCuenta = "+ID+"");
             ResultSet rs = stmt.getResultSet();
             rs.next();
             nombre=rs.getString("Nombre");

@@ -31,4 +31,7 @@ public class ControlCuenta {
    public int getNextID(){
        return c.next();
    }
+   public int obtenerID(String n){
+       return c.getID(n);
+   }
 }
