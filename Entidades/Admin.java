@@ -1,3 +1,7 @@
+package entidades;
+import entidades.Cuenta;
+import java.sql.*;
+import java.io.*;
 class Admin extends Cuenta{
     public Admin(){
         super();
