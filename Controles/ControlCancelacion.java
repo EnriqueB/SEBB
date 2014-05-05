@@ -17,12 +17,12 @@ public class ControlCancelacion {
    public void cancelarSuscripcion(int IDC) {
       s.cancelar(s.getSuscripcion(IDC));
    }
-   public void cancelarCuenta(int ncuenta) {
-     if(s.validar(ncuenta)) {
-       s.cancelar(s.getSuscripcion(ncuenta));
-       c.cancelar(ncuenta);
+   public void cancelarCuenta(String nombre) {
+     if(s.validar(nombre)) {
+       s.cancelar(s.getSuscripcion(nombre));
+       c.cancelar(nombre);
      } else {
-       c.cancelar(ncuenta);
+       c.cancelar(nombre);
      }
    }
 }
