@@ -11,8 +11,8 @@ public class ControlCancelacion {
      s = new Suscripcion();
    }  
    //Valida si la cuenta existe en la base de datos
-   public boolean validarCuenta(int ncuenta){            
-      return(c.validar(ncuenta));
+   public boolean validarCuenta(String nombre){            
+      return(c.validar(nombre));
    }
    public void cancelarSuscripcion(int IDC) {
       s.cancelar(s.getSuscripcion(IDC));
