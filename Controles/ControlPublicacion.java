@@ -2,6 +2,7 @@ package controles;
 import entidades.Articulo;
 import entidades.Edicion;
 import entidades.Cuenta;
+import entidades.Editor;
 
 public class ControlPublicacion {
    Articulo a;
@@ -17,16 +18,16 @@ public class ControlPublicacion {
    }
    public boolean validarCuentaAutor(int IDC){
        String t = c.getTipo(IDC);
-       if(c.validar(IDC)&&t.equals("Autor")){
+       if(c.validar(c.getNombre(IDC))&&t.equals("Autor")){
            return true;
        }
        return false;
    }
    public boolean validarEditor(int ID){
-       return c.getTipo.equals("Editor");
+       return c.getTipo(ID).equals("Editor");
    }
    public void crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, boolean P, String texto){
-        a.crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, boolean P, String texto);
+        a.crearArticulo(autor, titulo, l, v, IDE, IDC, P, texto);
    }
    public int [] obtenerArticulos(){
        return a.getArticulos();
@@ -35,7 +36,7 @@ public class ControlPublicacion {
        return e.getNext();
    }
    public void crearEdicion(int ID, String [] list){
-       e.crearEdicion(ID, list.length());
-       a.actualizaArticulos(ID, list);
+       e.crearEdicion(ID, list.length);
+       a.actualizarArticulos(ID, list);
    }
 }

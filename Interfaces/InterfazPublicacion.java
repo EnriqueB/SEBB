@@ -48,7 +48,7 @@ public class InterfazPublicacion extends HttpServlet {
     cp = new ControlPublicacion();
     boolean editor = cp.validarEditor(cu.obtenerID(n));
     if(editor){
-        int [] art = cp.ObtenerArticulos();
+        int [] art = cp.obtenerArticulos();
         out.println("<p>Bienvenido, editor</p>");
         out.println("<p>Esta es una lista de los IDs de los articulos listos para publicarse</p>");
         for(int i=0; i<art.length; i++){
@@ -80,7 +80,7 @@ public class InterfazPublicacion extends HttpServlet {
     }
   }
   public void publicacion(){  
-    String IDS = Integer.parseInt(thisRequest.getParameter("IDS").trim());
+    String IDS = thisRequest.getParameter("IDS").trim();
     String [] list = IDS.split(" ");
     int IDE = cp.obtenerSiguiente();
     cp.crearEdicion(IDE, list);
@@ -91,17 +91,5 @@ public class InterfazPublicacion extends HttpServlet {
     out.println("</form>");
     out.println("</BODY>");
     out.println("</HTML>"); 
-    
   }
-  public void votado(){  
-      int ID = Integer.parseInt(thisRequest.getParameter("IDA").trim());
-      out.println("<p>Gracias por votar por el articulo "+ ID +"</p>");
-      out.println("<p>El articulo ahora tiene: "+cv.obtenerVotos(ID)+" votos</p>");
-      out.println("<p>Presione el boton para regresar al indice.</p>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
-      out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
-      out.println("</form>");
-      out.println("</BODY>");
-      out.println("</HTML>");   
-  } 
 }

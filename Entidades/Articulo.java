@@ -182,23 +182,25 @@ public class Articulo {
         //update votos. //pending
     }
     public int [] getArticulos(){
-        int [] articulos = new int [100];
+        int [] articulos = new int [1];
+        articulos[0]=-1;
         int count;
         try {
-            stmt.executeQuery("SELECT IDArticulo, COUNT(*) as cant FROM Articulo WHERE Votos > 8 AND Publicado = 0 GROUP BY IDArticulo");
+            stmt.executeQuery("SELECT COUNT(IDArticulo) as cant FROM Articulo WHERE Votos = 4 AND Publicado = 0");
             ResultSet rs = stmt.getResultSet();
             rs.next();
             count=rs.getInt("cant");
             rs.close();
-            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Votos > 4 AND Publicado = 0 ");
+            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Votos = 4 AND Publicado = 0 ");
             rs = stmt.getResultSet();
             rs.next();
+            int [] articulosEncontrados = new int [count];
             for(int i=0; i<count; i++){
-                articulos[i]=rs.getInt("IDArticulo");
+                articulosEncontrados[i]=rs.getInt("IDArticulo");
                 rs.next();
             }
             rs.close();
-            return(articulos);
+            return(articulosEncontrados);
         }
         catch(SQLException e){
             System.out.println("Cannot getArticulos()"+e);

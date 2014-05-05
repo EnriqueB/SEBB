@@ -1,4 +1,8 @@
-class Editor extends Cuenta{
+package entidades;
+import entidades.Cuenta;
+import java.sql.*;
+import java.io.*;
+public class Editor extends Cuenta{
     public Editor(){
         super();
     }
