@@ -1,6 +1,7 @@
 package entidades;
 import java.sql.*;
 import java.io.*;
+import java.lang.*;
 public class Cuenta{
     Connection conn;
     Statement stmt;
@@ -25,7 +26,7 @@ public class Cuenta{
             rs.next();
             n=rs.getString("Nombre");
             rs.close();
-            return n==nombre;
+            return n.equals(nombre);
         }
         catch(SQLException e){
             System.out.println("Cannot getID()"+e);
