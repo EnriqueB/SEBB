@@ -1,6 +1,7 @@
 package controles;
 import entidades.Edicion;
 import entidades.Anuncios;
+import entidades.Articulo;
 
 public class ControlPublicidad {
    Edicion e;
