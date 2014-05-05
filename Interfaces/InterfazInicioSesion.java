@@ -43,7 +43,7 @@ public class InterfazInicioSesion extends HttpServlet {
     out.println("<form method=\"GET\" action=\"Inicio\">");
     out.println("<input type=\"hidden\" name=\"operacion\" value=\"iniciar\"/>");
     out.println("<input type=\"text\" name=\"cuenta\" size=\"15\"></p>");
-    out.println("<p>Indique su contraseña</p>");
+    out.println("<p>Indique su contraseï¿½a</p>");
     out.println("<input type=\"text\" name=\"password\" size=\"15\">");
     out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B1\"></p>");
     out.println("</form>");
