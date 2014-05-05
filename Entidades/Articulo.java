@@ -181,4 +181,39 @@ public class Articulo {
     public void seleccionarArticulo() {
         //update votos. //pending
     }
+    public int [] getArticulos(){
+        int [] articulos = new int [100];
+        int count;
+        try {
+            stmt.executeQuery("SELECT IDArticulo, COUNT(*) as cant FROM Articulo WHERE Votos > 8 AND Publicado = 0 GROUP BY IDArticulo");
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            count=rs.getInt("cant");
+            rs.close();
+            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Votos > 4 AND Publicado = 0 ");
+            rs = stmt.getResultSet();
+            rs.next();
+            for(int i=0; i<count; i++){
+                articulos[i]=rs.getInt("IDArticulo");
+                rs.next();
+            }
+            rs.close();
+            return(articulos);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getArticulos()"+e);
+        }
+        return articulos;
+    }
+    public void actualizarArticulos(int ID, String [] list){
+        for(int i=0; i<list.length; i++){
+            try {
+                String s = "UPDATE Articulo SET Publicado = 1, IDEdicion = "+ ID +" WHERE IDArticulo = " + list[i];
+                stmt.executeUpdate(s);
+            } 
+            catch (SQLException e) {
+                System.out.println ("Cannot execute disposicion()" + e);
+            }
+        }
+    }
 }

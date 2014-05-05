@@ -7,16 +7,13 @@ public class ControlPublicacion {
    Articulo a;
    Edicion e;
    Cuenta c;
+   Editor ed;
    
    public ControlPublicacion(){
      	a = new Articulo();
 	e= new Edicion();
 	c= new Cuenta();
-
-
-   }
-   public boolean validarEdicion(int ID){
-       return e.validarEdicion(ID);
+        ed = new Editor();
    }
    public boolean validarCuentaAutor(int IDC){
        String t = c.getTipo(IDC);
@@ -25,8 +22,20 @@ public class ControlPublicacion {
        }
        return false;
    }
-   
+   public boolean validarEditor(int ID){
+       return c.getTipo.equals("Editor");
+   }
    public void crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, boolean P, String texto){
-       return a.crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, boolean P, String texto);
+        a.crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, boolean P, String texto);
+   }
+   public int [] obtenerArticulos(){
+       return a.getArticulos();
+   }
+   public int obtenerSiguiente(){
+       return e.getNext();
+   }
+   public void crearEdicion(int ID, String [] list){
+       e.crearEdicion(ID, list.length());
+       a.actualizaArticulos(ID, list);
    }
 }

@@ -74,13 +74,29 @@ public class Edicion {
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void setFechaFin(int ID, int cantidad){
+    public int getNext(){
+        int n=0;
         try {
-            String s = "UPDATE Edicion SET Cantidad = " + cantidad + " WHERE IDEdicion = " + ID;
+            stmt.executeQuery("SELECT IDEdicion FROM Edicion ORDER BY IDEdicion DESC LIMIT 1");
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            n=rs.getInt("IDEdicion");
+            rs.close();
+            return n+1;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getNext()"+e);
+        }
+        return n;
+    }
+    public void crearEdicion(int ID, int L){
+        try{
+            String s = "INSERT INTO Edicion (IDEdicion, Numero, Cantidad) VALUES (" + ID + " , " + ID + " , " + L + ")";
+            System.out.println(s); 
             stmt.executeUpdate(s);
-        } 
-        catch (SQLException e) {
-            System.out.println ("Cannot execute disposicion()" + e);
+        }
+        catch(Exception e){
+            System.out.println ("Cannot update database" + e );
         }
     }
 }
