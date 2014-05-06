@@ -22,8 +22,8 @@ public class ControlBusqueda {
        //si es un usuario normal entonces solo puede verlo si esta publicado
        return p;
    }
-   public String busqueda(int IDA){
+   public String [] busqueda(String text){
        //se asume previa validacion de la busqueda
-       return a.getTexto(IDA);
+       return a.getBusqueda(text);
    }
 }
