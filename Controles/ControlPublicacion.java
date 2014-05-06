@@ -26,8 +26,8 @@ public class ControlPublicacion {
    public boolean validarEditor(int ID){
        return c.getTipo(ID).equals("Editor");
    }
-   public boolean crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, int P, String texto){
-        return a.crearArticulo(autor, titulo, l, v, IDE, IDC, P, texto);
+   public boolean crearArticulo(int ID, String autor, String titulo, int l, int v, int IDE, int IDC, int P, String texto){
+        return a.crearArticulo(ID, autor, titulo, l, v, IDE, IDC, P, texto);
    }
    public int [] obtenerArticulos(){
        return a.getArticulos();
