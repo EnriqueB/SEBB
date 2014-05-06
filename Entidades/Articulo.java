@@ -244,12 +244,12 @@ public class Articulo {
             rs.next();
             count=rs.getInt("cant");
             rs.close();
-            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Publicado = 1 AND Titulo LIKE '%"+sample+"%'");
+            stmt.executeQuery("SELECT Titulo FROM Articulo WHERE Publicado = 1 AND Titulo LIKE '%"+sample+"%'");
             rs = stmt.getResultSet();
             rs.next();
             String [] articulosEncontrados = new String [count];
             for(int i=0; i<count; i++){
-                articulosEncontrados[i]=rs.getString("Texto");
+                articulosEncontrados[i]=rs.getString("Titulo");
                 rs.next();
             }
             rs.close();
