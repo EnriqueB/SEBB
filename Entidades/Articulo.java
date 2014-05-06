@@ -236,16 +236,15 @@ public class Articulo {
         return n;
     }
     public String [] getBusqueda(String sample){
-        String [] articulos = new String [1];
-        articulos[0]="";
+        String [] articulos = new String [0];
         int count;
         try {
-            stmt.executeQuery("SELECT COUNT(IDArticulo) as cant FROM Articulo WHERE Publicado = 1 AND Titulo = %"+sample+"%");
+            stmt.executeQuery("SELECT COUNT(IDArticulo) as cant FROM Articulo WHERE Publicado = 1 AND Titulo LIKE '%"+sample+"%'");
             ResultSet rs = stmt.getResultSet();
             rs.next();
             count=rs.getInt("cant");
             rs.close();
-            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Publicado = 1 AND Titulo = %"+sample+"%");
+            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Publicado = 1 AND Titulo LIKE '%"+sample+"%'");
             rs = stmt.getResultSet();
             rs.next();
             String [] articulosEncontrados = new String [count];
