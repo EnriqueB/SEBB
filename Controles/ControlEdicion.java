@@ -7,7 +7,7 @@ public class ControlEdicion {
    Cuenta c;
    Suscripcion s;
 
-   public ControlSuscripcion(){
+   public ControlEdicion(){
      an = new Anuncios(); //Asume que la instancia persiste durante la sesion
      s = new Suscripcion();
      art = new Articulo();
