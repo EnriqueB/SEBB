@@ -58,4 +58,7 @@ public class ControlSuscripcion {
    public boolean validarSus(int IDC) {
       return s.validar(IDC);
    }
+   public int [] vencimientos() {
+      return s.getProximos();
+   }
 }
