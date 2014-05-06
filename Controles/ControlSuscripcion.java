@@ -55,4 +55,7 @@ public class ControlSuscripcion {
    public void cancelarSuscripcion(int IDS){
        s.cancelar(IDS);
    }
+   public boolean validarSus(int IDC) {
+      return s.validar(IDC);
+   }
 }
