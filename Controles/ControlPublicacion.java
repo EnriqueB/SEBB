@@ -18,7 +18,7 @@ public class ControlPublicacion {
    }
    public boolean validarCuentaAutor(int IDC){
        String t = c.getTipo(IDC);
-       if(c.validar(c.getNombre(IDC))&&t.equals("Autor")){
+       if(t.equals("Autor")){
            return true;
        }
        return false;
@@ -26,8 +26,8 @@ public class ControlPublicacion {
    public boolean validarEditor(int ID){
        return c.getTipo(ID).equals("Editor");
    }
-   public void crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, boolean P, String texto){
-        a.crearArticulo(autor, titulo, l, v, IDE, IDC, P, texto);
+   public boolean crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, int P, String texto){
+        return a.crearArticulo(autor, titulo, l, v, IDE, IDC, P, texto);
    }
    public int [] obtenerArticulos(){
        return a.getArticulos();

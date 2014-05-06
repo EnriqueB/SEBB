@@ -13,7 +13,7 @@ public class InterfazArticulos extends HttpServlet {
   HttpServletRequest thisRequest;
   PrintWriter out;
   ControlInicioSesion ci;
-  ControlVotacion cv;
+  ControlPublicacion cp;
   ControlCuenta cu;
   //Es importante observar que todos los metodos definen la operacion GET para
   //que el metodo doGet sea el que se ejecuta al presionar el boton "Enviar". 
@@ -82,7 +82,7 @@ public class InterfazArticulos extends HttpServlet {
         String n = ci.getConected();
         cu = new ControlCuenta();
         cp = new ControlPublicacion();
-        autorID = cu.obtenerID(n);
+        int autorID = cu.obtenerID(n);
         String titulo = thisRequest.getParameter("titulo").trim();
         String texto = thisRequest.getParameter("text").trim();
         boolean posible = cp.crearArticulo(n, titulo, 1, 0, -1, autorID, 0, texto);

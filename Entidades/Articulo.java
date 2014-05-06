@@ -146,15 +146,17 @@ public class Articulo {
     public void setPublicado(boolean p){
         //update database
     }
-    public void crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, boolean P, String texto){
+    public boolean crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, int P, String texto){
         try{
             String s = "INSERT INTO Articulo (Autor, Longitud, Titulo, Votos, IDEdicion, IDCuenta, Publicado, Texto)"
                     + " VALUES ('" + autor + "' , " + l + " , '" + titulo + "' , " + v + " , " + IDE + " , " + IDC + " , " + 0 + " , '" + texto +  "')";
             System.out.println(s); 
             stmt.executeUpdate(s);
+            return true;
         }
         catch(Exception e){
             System.out.println ("Cannot update database" + e );
+            return false;
         }
     }
     public String getTexto(int ID){
@@ -186,12 +188,12 @@ public class Articulo {
         articulos[0]=-1;
         int count;
         try {
-            stmt.executeQuery("SELECT COUNT(IDArticulo) as cant FROM Articulo WHERE Votos = 4 AND Publicado = 0");
+            stmt.executeQuery("SELECT COUNT(IDArticulo) as cant FROM Articulo WHERE Votos > 3 AND Publicado = 0");
             ResultSet rs = stmt.getResultSet();
             rs.next();
             count=rs.getInt("cant");
             rs.close();
-            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Votos = 4 AND Publicado = 0 ");
+            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Votos > 3 AND Publicado = 0 ");
             rs = stmt.getResultSet();
             rs.next();
             int [] articulosEncontrados = new int [count];

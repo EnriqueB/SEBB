@@ -29,7 +29,7 @@ public class Cuenta{
             return n.equals(nombre);
         }
         catch(SQLException e){
-            System.out.println("Cannot getID()"+e);
+            System.out.println("Cannot validar()"+e + " " + nombre);
         }
         return false;
     }
@@ -44,7 +44,7 @@ public class Cuenta{
             return ID;
         }
         catch(SQLException e){
-            System.out.println("Cannot getID()"+e);
+            System.out.println("Cannot getID()"+e+ " " + nombre);
         }
         return ID;
     }
