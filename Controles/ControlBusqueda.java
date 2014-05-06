@@ -15,7 +15,7 @@ public class ControlBusqueda {
        //dependiendo del tipo de cuenta que tenga
        String t = c.getTipo(IDC);
        //las cuentas de juez, admin y editor pueden acceder a cualquier articulo que exista
-       if(t.equals("Juez")||t.equals("Admin")||t.equals("Editor")){
+       if(t.equals("Juez")||t.equals("Admin")||t.equals("Editor")||t.equals("Autor")){
            return true;
        }
        return false;
