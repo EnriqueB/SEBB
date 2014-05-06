@@ -4,7 +4,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import java.util.*;
-import controles.*;
+import controles.ControlCuenta;
+import controles.ControlPublicacion;
+import controles.ControlInicioSesion;
 
 public class InterfazArticulos extends HttpServlet {
   HttpServletResponse thisResponse;
