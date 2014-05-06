@@ -33,7 +33,7 @@ public class InterfazBusqueda extends HttpServlet {
     out.println("</HEAD>");
     out.println("<BODY>");
     out.println("<TITLE>SEBB</TITLE>");
-    out.println("<h2>Buscar Articulos</h2>");    
+    out.println("<h2>BuscarArticulos</h2>");    
     String operacion = request.getParameter("operacion");
     if(operacion == null){ // El menu nos envia un parametro para indicar el inicio de una transaccion
       buscar();  
@@ -47,7 +47,7 @@ public class InterfazBusqueda extends HttpServlet {
 	public void buscar(){
 	        out.println("<p>Bienvenido, Usuario</p>");
 	        out.println("<p>Escriba el titulo o frase que identifique el articulo que quiere buscar.</p>");
-	        out.println("<form method=\"GET\" action=\"Buscar Articulos\">");
+	        out.println("<form method=\"GET\" action=\"BuscarArticulos\">");
 	        out.println("<input type=\"hidden\" name=\"operacion\" value=\"resultado\"/>");
 	        out.println("<input type=\"text\" name=\"texto\" size=\"15\"></p>");
 	        out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B1\"></p>");
@@ -70,7 +70,7 @@ public class InterfazBusqueda extends HttpServlet {
 	            		out.println("<p>"+art[i]+"</p>");
 			}
 			out.println("<p>Escriba el titulo exacto del articulo que quiera abrir.</p>");
-		        out.println("<form method=\"GET\" action=\"Buscar Articulos\">");
+		        out.println("<form method=\"GET\" action=\"BuscarArticulos\">");
 		        out.println("<input type=\"hidden\" name=\"operacion\" value=\"desplegar\"/>");
 		        out.println("<input type=\"text\" name=\"articulo\" size=\"15\"></p>");
 		        out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B1\"></p>");
