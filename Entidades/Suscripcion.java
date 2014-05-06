@@ -255,7 +255,7 @@ public class Suscripcion {
                 rs.next();
                 count=rs.getInt("cant");
                 rs.close();
-                System.out.println(cant);
+                System.out.println(count);
                 stmt.executeQuery("SELECT DISTINCT IDCuenta, Fin FROM Suscripcion");
                 rs = stmt.getResultSet();
                 rs.next();
