@@ -70,7 +70,6 @@ public class InterfazPublicacion extends HttpServlet {
     }
     else{
         out.println("<p>No tiene permisos suficientes para estar aqui </p>");
-        out.println("<p>Nombre</p>");
         out.println("<form method=\"GET\" action=\"menu.html\">");
         out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B2\"></p>");
         out.println("</form>");
