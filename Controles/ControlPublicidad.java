@@ -41,4 +41,7 @@ public class ControlPublicidad {
        }
        return false;
    }
+   public int [] obtenerPublicidad(){
+       return a.getAnuncios();
+   }
 }
