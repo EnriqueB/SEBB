@@ -29,7 +29,7 @@ public class ControlBusqueda {
    }
    public String getArticuloRestringido(String titulo) {
       String txt = a.getTexto(titulo);
-      if(txt.lengh() > 61) {
+      if(txt.length() > 61) {
           return txt.substring(0, 60);
       }
       return txt;
