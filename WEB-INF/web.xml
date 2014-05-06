@@ -116,7 +116,16 @@
     <servlet-mapping>
         <servlet-name>Votacion</servlet-name>
         <url-pattern>/Votacion</url-pattern>
-    </servlet-mapping>    
+    </servlet-mapping>  
+
+    <servlet>
+      <servlet-name>Edicion</servlet-name>
+      <servlet-class>interfaces.InterfazEdicion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Edicion</servlet-name>
+        <url-pattern>/Edicion</url-pattern>
+    </servlet-mapping>  
 
 <!--
 <servlet>

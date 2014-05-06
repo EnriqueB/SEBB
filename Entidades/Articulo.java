@@ -177,7 +177,7 @@ public class Articulo {
     public String getTexto2(int ID){
         String texto = "";
         try {
-            stmt.executeQuery("SELECT Texto FROM Articulo WHERE IDArticulo = "+id);
+            stmt.executeQuery("SELECT Texto FROM Articulo WHERE IDArticulo = "+ID);
             ResultSet rs = stmt.getResultSet();
             rs.next();
             texto=rs.getString("Texto");

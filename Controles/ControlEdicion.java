@@ -2,10 +2,12 @@ package controles;
 import entidades.Suscripcion;
 import entidades.Anuncios;
 import entidades.Articulo;
-import entidades.Ediciones;
+import entidades.Edicion;
 public class ControlEdicion {
-   Cuenta c;
+   Anuncios an;
+   Articulo art;
    Suscripcion s;
+   Edicion e;
 
    public ControlEdicion(){
      an = new Anuncios(); //Asume que la instancia persiste durante la sesion

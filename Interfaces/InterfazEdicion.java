@@ -43,12 +43,13 @@ public class InterfazEdicion extends HttpServlet {
     } 
   }
   
-  public void publicar(){
+  public void pedir(){
     ci = new ControlInicioSesion();
     String n = ci.getConected();
     cu = new ControlCuenta();
     cs = new ControlSuscripcion();
     boolean suscrito = cs.validarSus(cu.obtenerID(n));
+    suscrito=true;
     if(suscrito || cu.verificarAdmin(cu.obtenerID(n))){
         out.println("<p>Bienvenido a la consulta de edicion</p>");
         out.println("<p>Escriba el numero de la edicion que desea ver</p>");
@@ -76,7 +77,7 @@ public class InterfazEdicion extends HttpServlet {
     }
   }
   public void mostrar(){  
-    String IDE = thisRequest.getParameter("IDE").trim();
+    int IDE = Integer.parseInt(thisRequest.getParameter("IDE").trim());
     ce = new ControlEdicion();
     int [] arts = ce.obtenerArticulos(IDE);
     int [] ans = ce.obtenerAnuncios(IDE);
@@ -87,7 +88,7 @@ public class InterfazEdicion extends HttpServlet {
     }
     out.println("<p>Anuncios: </p>");
     for (int i=0; i<arts.length; i++){
-	out.println("<p>Texto: " + ce.obtenerNombre(an[i]) + "</p>");
+	out.println("<p>Texto: " + ce.obtenerNombre(ans[i]) + "</p>");
     }
     out.println("<p>Presione el boton para regresar al menu.</p>");
     out.println("<form method=\"GET\" action=\"menu.html\">");
