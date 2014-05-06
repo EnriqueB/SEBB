@@ -10,7 +10,7 @@ public class Edicion {
     public Edicion(){
         try{
             String userName="root";
-            String password="password";
+            String password="admin";
             String url = "jdbc:mysql://localhost/SEBB";
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection (url, userName, password);
