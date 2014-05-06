@@ -99,11 +99,12 @@ public class InterfazBusqueda extends HttpServlet {
 	        cb = new ControlBusqueda();
 	        cs = new ControlSuscripcion();
 	        int userID = cu.obtenerID(n);
+	        String textoC;
 	        if(cb.validarBusqueda(userID) || cs.validarSus(userID)) {
-	        	String textoC = cb.getArticulo(articulo);
+	        	textoC = cb.getArticulo(articulo);
 	        }
 	        else {
-	        	String textoC = cb.getArticuloRestringido(articulo);
+	        	textoC = cb.getArticuloRestringido(articulo);
 	        }
 	        out.println("<p>" + articulo + "<p>");
 	        out.println("<p>" + textoC + "<p>");
