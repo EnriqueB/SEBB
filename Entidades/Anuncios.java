@@ -143,7 +143,7 @@ public class Anuncios {
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void insertarAnuncio(int ID, int IDA){
+    public void insertarAnuncio(int ID, String IDA){
         try {
             String s = "INSERT INTO Edicion-Anuncios (IDEdicion, IDAnuncios) VALUES ("+ ID+" , "+IDA+")";
             stmt.executeUpdate(s);
