@@ -34,4 +34,7 @@ public class ControlCuenta {
    public int obtenerID(String n){
        return c.getID(n);
    }
+   public boolean verificarAdmin(int ID) {
+      return c.getTipo();
+   }
 }
