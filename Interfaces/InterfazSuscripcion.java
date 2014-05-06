@@ -89,7 +89,7 @@ public class InterfazSuscripcion extends HttpServlet {
         out.println("<p><input type=\"submit\" value=\"Cancelar Suscripcion\"name=\"B3\"></p>");
         out.println("</form>");
 
-        out.println("<form method=\"GET\" action=\"index.html\">");
+        out.println("<form method=\"GET\" action=\"menu.html\">");
         out.println("<p><input type=\"submit\" value=\"Cancelar\"name=\"B4\"></p>");
         out.println("</form>");
 
@@ -99,7 +99,7 @@ public class InterfazSuscripcion extends HttpServlet {
     else{
         out.println("<p>Necesita iniciar sesion para estar aqui </p>");
         out.println("<p>Nombre</p>");
-        out.println("<form method=\"GET\" action=\"index.html\">");
+        out.println("<form method=\"GET\" action=\"menu.html\">");
         out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B5\"></p>");
         out.println("</form>");
 
@@ -124,7 +124,7 @@ public class InterfazSuscripcion extends HttpServlet {
       out.println("<p><input type=\"submit\" value=\"Multiple\"name=\"B8\"></p>");
       out.println("</form>");
       
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Cancelar\"name=\"B9\"></p>");
       out.println("</form>");
       out.println("</BODY>");
@@ -139,7 +139,7 @@ public class InterfazSuscripcion extends HttpServlet {
       out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B10\"></p>");
       out.println("</form>");
       out.println("</form>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Cancelar\"name=\"B14\"></p>");
       out.println("</form>");
       out.println("</BODY>");
@@ -158,7 +158,7 @@ public class InterfazSuscripcion extends HttpServlet {
       out.println("<input type=\"hidden\" name=\"operacion\" value=\"personalPg\"/>");
       out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B11\"></p>");
       out.println("</form>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Cancelar\"name=\"B12\"></p>");
       out.println("</form>");
       out.println("</BODY>");
@@ -184,7 +184,7 @@ public class InterfazSuscripcion extends HttpServlet {
       }
       out.println("<p>El pago se ha realizado con exito</p>");
       out.println("<p>Presione el boton de continuar para regresar al menu</p>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Continuar\"name=\"B13\"></p>");
       out.println("</form>");
       out.println("</BODY>");
@@ -202,7 +202,7 @@ public class InterfazSuscripcion extends HttpServlet {
       out.println("<input type=\"hidden\" name=\"operacion\" value=\"corporativaP\"/>");
       out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B16\"></p>");
       out.println("</form>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Cancelar\"name=\"B17\"></p>");
       out.println("</form>");
       out.println("</BODY>");
@@ -224,7 +224,7 @@ public class InterfazSuscripcion extends HttpServlet {
       out.println("<input type=\"hidden\" name=\"operacion\" value=\"corporativaPg\"/>");
       out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B18\"></p>");
       out.println("</form>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Cancelar\"name=\"B19\"></p>");
       out.println("</form>");
       out.println("</BODY>");
@@ -244,7 +244,7 @@ public class InterfazSuscripcion extends HttpServlet {
       }
       out.println("<p>El pago se ha realizado con exito</p>");
       out.println("<p>Presione el boton de continuar para regresar al menu</p>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Continuar\"name=\"B20\"></p>");
       out.println("</form>");
       out.println("</BODY>");
@@ -262,7 +262,7 @@ public class InterfazSuscripcion extends HttpServlet {
       out.println("<input type=\"hidden\" name=\"operacion\" value=\"multipleP\"/>");
       out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B22\"></p>");
       out.println("</form>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Cancelar\"name=\"B23\"></p>");
       out.println("</form>");
       out.println("</BODY>");
@@ -284,7 +284,7 @@ public class InterfazSuscripcion extends HttpServlet {
       out.println("<input type=\"hidden\" name=\"operacion\" value=\"multiplePg\"/>");
       out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B24\"></p>");
       out.println("</form>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Cancelar\"name=\"B25\"></p>");
       out.println("</form>");
       out.println("</BODY>");
@@ -301,7 +301,7 @@ public class InterfazSuscripcion extends HttpServlet {
             cs.crearSuscripcion(IDC, IDS+i, cant, "Multiple");
       out.println("<p>El pago se ha realizado con exito</p>");
       out.println("<p>Presione el boton de continuar para regresar al menu</p>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Continuar\"name=\"B26\"></p>");
       out.println("</form>");
       out.println("</BODY>");
@@ -318,7 +318,7 @@ public class InterfazSuscripcion extends HttpServlet {
       if(lista.length==0){
             out.println("<p>No se encontraron suscripciones activas</p>");
             out.println("<p>Presione el boton de continuar para regresar al menu</p>");
-            out.println("<form method=\"GET\" action=\"index.html\">");
+            out.println("<form method=\"GET\" action=\"menu.html\">");
             out.println("<p><input type=\"submit\" value=\"Continuar\"name=\"B27\"></p>");
             out.println("</form>");
             out.println("</BODY>");
@@ -333,7 +333,7 @@ public class InterfazSuscripcion extends HttpServlet {
               out.println("<p>Fin: " +sdf.format(cs.obtenerFin(lista[i]).getTime())+"</p>");
           }
           out.println("<p>Presione el boton de continuar para regresar al menu</p>");
-          out.println("<form method=\"GET\" action=\"index.html\">");
+          out.println("<form method=\"GET\" action=\"menu.html\">");
           out.println("<p><input type=\"submit\" value=\"Continuar\"name=\"B27\"></p>");
           out.println("</form>");
           out.println("</BODY>");
@@ -354,7 +354,7 @@ public class InterfazSuscripcion extends HttpServlet {
       }
       out.println("<p>Se han cancelado todas las suscripciones para esta cuenta</p>");
       out.println("<p>Presione el boton de continuar para regresar al menu</p>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Continuar\"name=\"B29\"></p>");
       out.println("</form>");
       out.println("</BODY>");
