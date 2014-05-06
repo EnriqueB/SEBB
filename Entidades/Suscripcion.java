@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.lang.Math;
 public class Suscripcion {
     Connection conn;
     Statement stmt;
@@ -241,5 +242,41 @@ public class Suscripcion {
             System.out.println("Cannot getSuscripciones()"+e);
             return suscripcion;
         }
+    }
+    public int [] getProximos(){
+    	int [] suscripciones = new int [0];
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar fin = Calendar.getInstance();
+            int count;
+            try {
+                stmt.executeQuery("SELECT COUNT(IDSuscripcion) as cant FROM Suscripcion");
+                ResultSet rs = stmt.getResultSet();
+                rs.next();
+                count=rs.getInt("cant");
+                rs.close();
+                stmt.executeQuery("SELECT IDSuscripcion, Fin FROM Suscripcion");
+                rs = stmt.getResultSet();
+                rs.next();
+                int [] suscripcionesProximas = new int [count];
+    	    int apuntador =0;
+                for(int i=0; i<count; i++){
+                    fin=rs.getDate("Fin");
+    		Calendar hoy = new Calendar.getInstace();
+    		long resta = fin.getTimeInMilis()-hoy.getTimeInMilis();
+    		resta=(resta/86400000.0);
+    		Math.floor(resta);
+    		if(resta==30 || resta==90){
+    			suscripcionesProximas[apuntador]=rs.getIDSuscripcion("IDSuscripcion");
+    			apuntador++;
+    		}
+                    rs.next();
+                }
+                rs.close();
+                return(suscripcionesProximas);
+            }
+            catch(SQLException e){
+                System.out.println("Cannot getSuscripciones()"+e);
+            }
+            return suscripciones;
     }
 }
