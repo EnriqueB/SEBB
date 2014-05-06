@@ -83,9 +83,10 @@ public class InterfazArticulos extends HttpServlet {
         cu = new ControlCuenta();
         cp = new ControlPublicacion();
         int autorID = cu.obtenerID(n);
+        int ID = cp.getNextID();
         String titulo = thisRequest.getParameter("titulo").trim();
         String texto = thisRequest.getParameter("text").trim();
-        boolean posible = cp.crearArticulo(n, titulo, 1, 0, -1, autorID, 0, texto);
+        boolean posible = cp.crearArticulo(ID, n, titulo, 1, 0, -1, autorID, 0, texto);
         if (posible){
           procesado();
         }
