@@ -32,7 +32,7 @@ public class InterfazPublicacion extends HttpServlet {
     out.println("</HEAD>");
     out.println("<BODY>");
     out.println("<TITLE>SEBB</TITLE>");
-    out.println("<h2>Votacion</h2>");    
+    out.println("<h2>Publicacion</h2>");    
     String operacion = request.getParameter("operacion");
     if(operacion == null){ // El menu nos envia un parametro para indicar el inicio de una transaccion
       publicar();  
