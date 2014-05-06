@@ -18,7 +18,7 @@ public class ControlPublicacion {
    }
    public boolean validarCuentaAutor(int IDC){
        String t = c.getTipo(IDC);
-       if(t.equals("Autor")){
+       if(t.equals("Autor") || t.equals("Admin") || t.equals("Editor"){
            return true;
        }
        return false;
