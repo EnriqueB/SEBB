@@ -90,7 +90,16 @@
         <servlet-name>Publicidad</servlet-name>
         <url-pattern>/Publicidad</url-pattern>
     </servlet-mapping>    
-
+	
+    <servlet>
+      <servlet-name>Buscar Articulos</servlet-name>
+      <servlet-class>interfaces.InterfazBusqueda</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Buscar Articulos</servlet-name>
+        <url-pattern>/BuscarArticulos</url-pattern>
+    </servlet-mapping>   
+    
     <servlet>
       <servlet-name>Suscripcion</servlet-name>
       <servlet-class>interfaces.InterfazSuscripcion</servlet-class>
