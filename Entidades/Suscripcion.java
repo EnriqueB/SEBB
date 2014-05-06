@@ -247,6 +247,7 @@ public class Suscripcion {
     	int [] suscripciones = new int [0];
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Calendar fin = Calendar.getInstance();
+            Date d;
             int count;
             try {
                 stmt.executeQuery("SELECT COUNT(IDSuscripcion) as cant FROM Suscripcion");
@@ -260,10 +261,11 @@ public class Suscripcion {
                 int [] suscripcionesProximas = new int [count];
     	    int apuntador =0;
                 for(int i=0; i<count; i++){
-                    fin=rs.getDate("Fin");
+                    d=rs.getDate("Fin");
+                    fin.setTime(d);
     		Calendar hoy = new Calendar.getInstace();
     		long resta = fin.getTimeInMilis()-hoy.getTimeInMilis();
-    		resta=(resta/86400000.0);
+    		resta=(resta/86400000);
     		Math.floor(resta);
     		if(resta==30 || resta==90){
     			suscripcionesProximas[apuntador]=rs.getInt("IDCuenta");
