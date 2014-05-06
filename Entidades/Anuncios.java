@@ -67,23 +67,25 @@ public class Anuncios {
         }
         return null;
     }
-    public int[] getAnuncios(int ID){
+    public int[] getAnuncios(){
         //not sure if this works
         int count;
-        int [] a = new int[100];
+        int [] a = new int[1];
         try {
-            stmt.executeQuery("SELECT IDEdicion, COUNT(*) as cant FROM Edicion-Anuncios WHERE IDEdicion = "+ID+" GROUP BY IDEdicion");
+            stmt.executeQuery("SELECT IDEdicion, COUNT(*) as cant FROM Anuncios GROUP BY IDEdicion");
             ResultSet rs = stmt.getResultSet();
             rs.next();
             count=rs.getInt("cant");
             rs.close();
-            stmt.executeQuery("Select IDAnuncio FROM Edicion-Anuncios WHERE IDEdicion = "+ID);
+            stmt.executeQuery("Select IDAnuncio FROM Anuncios");
             rs.next();
+            int [] anunciosEnc = new int[count];
             for(int i=0; i<count; i++){
-                a[i]=rs.getByte("IDAnuncio");
+                anunciosEnc[i]=rs.getInt("IDAnuncio");
                 rs.next();
             }
-            return a;
+            rs.close();
+            return anunciosEnc;
         }
         catch(SQLException e){
             System.out.println("Cannot getAnuncios()"+e);
