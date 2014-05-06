@@ -39,4 +39,7 @@ public class ControlPublicacion {
        e.crearEdicion(ID, list.length);
        a.actualizarArticulos(ID, list);
    }
+   public int getNextID(){
+       return a.next();
+   }
 }
