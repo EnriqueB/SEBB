@@ -146,10 +146,10 @@ public class Articulo {
     public void setPublicado(boolean p){
         //update database
     }
-    public boolean crearArticulo(String autor, String titulo, int l, int v, int IDE, int IDC, int P, String texto){
+    public boolean crearArticulo(int ID, String autor, String titulo, int l, int v, int IDE, int IDC, int P, String texto){
         try{
-            String s = "INSERT INTO Articulo (Autor, Longitud, Titulo, Votos, IDEdicion, IDCuenta, Publicado, Texto)"
-                    + " VALUES ('" + autor + "' , " + l + " , '" + titulo + "' , " + v + " , " + IDE + " , " + IDC + " , " + 0 + " , '" + texto +  "')";
+            String s = "INSERT INTO Articulo (IDArticulo, Autor, Longitud, Titulo, Votos, IDEdicion, IDCuenta, Publicado, Texto)"
+                    + " VALUES ("+ID+" , '"+ autor + "' , " + l + " , '" + titulo + "' , " + v + " , " + IDE + " , " + IDC + " , " + 0 + " , '" + texto +  "')";
             System.out.println(s); 
             stmt.executeUpdate(s);
             return true;
@@ -219,5 +219,20 @@ public class Articulo {
                 System.out.println ("Cannot execute disposicion()" + e);
             }
         }
+    }
+     public int next(){
+        int n=0;
+        try {
+            stmt.executeQuery("SELECT IDArticulo FROM Articulo ORDER BY IDArticulo DESC LIMIT 1");
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            n=rs.getInt("IDArticulo");
+            rs.close();
+            return n+1;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot next()"+e);
+        }
+        return n;
     }
 }
