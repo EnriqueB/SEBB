@@ -235,4 +235,30 @@ public class Articulo {
         }
         return n;
     }
+    public String [] getBusqueda(String sample){
+        String [] articulos = new String [1];
+        articulos[0]="";
+        int count;
+        try {
+            stmt.executeQuery("SELECT COUNT(IDArticulo) as cant FROM Articulo WHERE Publicado = 1 AND Titulo = %"+sample+"%");
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            count=rs.getInt("cant");
+            rs.close();
+            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Publicado = 1 AND Titulo = %"+sample+"%");
+            rs = stmt.getResultSet();
+            rs.next();
+            String [] articulosEncontrados = new String [count];
+            for(int i=0; i<count; i++){
+                articulosEncontrados[i]=rs.getString("Texto");
+                rs.next();
+            }
+            rs.close();
+            return(articulosEncontrados);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getArticulos()"+e);
+        }
+        return articulos;
+    }
 }
