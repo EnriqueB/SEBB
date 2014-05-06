@@ -68,20 +68,20 @@ public class Anuncios {
         return null;
     }
     public int[] getAnuncios(){
-        //not sure if this works
         int count;
         int [] a = new int[1];
         try {
-            stmt.executeQuery("SELECT IDEdicion, COUNT(*) as cant FROM Anuncios GROUP BY IDEdicion");
+            stmt.executeQuery("SELECT COUNT(*) as cant FROM Anuncios");
             ResultSet rs = stmt.getResultSet();
             rs.next();
             count=rs.getInt("cant");
             rs.close();
-            stmt.executeQuery("Select IDAnuncio FROM Anuncios");
+            stmt.executeQuery("Select IDAnuncios FROM Anuncios");
+            rs = stmt.getResultSet();
             rs.next();
             int [] anunciosEnc = new int[count];
             for(int i=0; i<count; i++){
-                anunciosEnc[i]=rs.getInt("IDAnuncio");
+                anunciosEnc[i]=rs.getInt("IDAnuncios");
                 rs.next();
             }
             rs.close();
@@ -135,7 +135,7 @@ public class Anuncios {
     public void crearAnuncios(int ID, int[] a){
         try {
             for(int i=0; i<a.length; i++){
-                String s = "INSERT INTO Edicion-Anuncios (IDEdicion, IDAnuncios) VALUES ("+ ID+" , "+ a[i]+")";
+                String s = "INSERT INTO EdicionAnuncios (IDEdicion, IDAnuncios) VALUES ("+ ID+" , "+ a[i]+")";
                 stmt.executeUpdate(s);
             }
         } 
@@ -145,7 +145,7 @@ public class Anuncios {
     }
     public void insertarAnuncio(int ID, String IDA){
         try {
-            String s = "INSERT INTO Edicion-Anuncios (IDEdicion, IDAnuncios) VALUES ("+ ID+" , "+IDA+")";
+            String s = "INSERT INTO EdicionAnuncios (IDEdicion, IDAnuncios) VALUES ("+ ID+" , "+IDA+")";
             stmt.executeUpdate(s);
         } 
         catch (SQLException e) {

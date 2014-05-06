@@ -8,12 +8,12 @@ import controles.ControlInicioSesion;
 import controles.ControlPublicidad;
 import controles.ControlCuenta;
 
-public class InterfazPublicacion extends HttpServlet {
+public class InterfazPublicidad extends HttpServlet {
   HttpServletResponse thisResponse;
   HttpServletRequest thisRequest;
   PrintWriter out;
   ControlInicioSesion ci;
-  ControlPublicacion cp;
+  ControlPublicidad cp;
   ControlCuenta cu;
   //Es importante observar que todos los metodos definen la operacion GET para
   //que el metodo doGet sea el que se ejecuta al presionar el boton "Enviar". 
@@ -56,7 +56,7 @@ public class InterfazPublicacion extends HttpServlet {
         }
         out.println("<p>Escriba los ID's de los Anuncios que desea publicar separados por espacios </p>");
         out.println("<form method=\"GET\" action=\"Publicidad\">");
-        out.println("<input type=\"hidden\" name=\"operacion\" value=\"publicacion\"/>");
+        out.println("<input type=\"hidden\" name=\"operacion\" value=\"publicar\"/>");
         out.println("<input type=\"text\" name=\"IDS\" size=\"15\"></p>");
         out.println("<p>Escriba el ID de la revista en la que seran usados los anuncios. </p>");
         out.println("<input type=\"text\" name=\"IDRev\" size=\"15\"></p>");
@@ -81,12 +81,13 @@ public class InterfazPublicacion extends HttpServlet {
         out.println("</HTML>"); 
     }
   }
-  public void publicacion(){  
+  public void publicidad(){  
     String IDS = thisRequest.getParameter("IDS").trim();
-    int IDRev = thisRequest.getParameter("IDRev").trim();
+    int IDRev = Integer.parseInt(thisRequest.getParameter("IDRev").trim());
+    cp = new ControlPublicidad();
     if(cp.validarEdicion(IDRev)) {
        String [] list = IDS.split(" ");
-      for(int i=0; i<list.length(); i++) {
+      for(int i=0; i<list.length; i++) {
         cp.agregarAnuncio(IDRev, list[i]);
       }
       out.println("Los anuncios han sido agregados a la revista satisfactoriamente.</p>");
