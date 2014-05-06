@@ -64,7 +64,6 @@ public class InterfazBusqueda extends HttpServlet {
         	cb = new ControlBusqueda();
         	String texto = thisRequest.getParameter("texto").trim();
         	String [] art = cb.busqueda(texto);
-        	out.println("<p>" + texto +"</p>");
         	if(art.length > 0) {
 		        out.println("<p>Resultados de la busqueda</p>");
 			for(int i=0; i<art.length; i++) {
