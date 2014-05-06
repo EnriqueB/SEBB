@@ -13,16 +13,16 @@ public class ControlConsulta {
      s = new Suscripcion();
    }  
    public String consultaTipo(int IDC){
-       return(s.getTipo(s.getSuscripcion(IDC)));
+       return(s.getTipo(IDC));
    }
    public int consultaDuracion(int IDC){
-       return(s.getDuracion(s.getSuscripcion(IDC)));
+       return(s.getDuracion(IDC));
    }
    public Calendar consultaInicio(int IDC){
-       return (s.getInicio(s.getSuscripcion(IDC)));
+       return (s.getInicio(IDC));
    }
    public Calendar consultaFin(int IDC){
-       return (s.getFin(s.getSuscripcion(IDC)));
+       return (s.getFin(IDC));
    }
    public String consultaNombre(int ncuenta) {
      return (c.getNombre(ncuenta));

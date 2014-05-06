@@ -44,7 +44,7 @@ public class InterfazRegistro extends HttpServlet {
     out.println("<form method=\"GET\" action=\"Registro\">");
     out.println("<input type=\"hidden\" name=\"operacion\" value=\"registrar\"/>");
     out.println("<input type=\"text\" name=\"cuenta\" size=\"15\"></p>");
-    out.println("<p>contrase�a</p>");
+    out.println("<p>Contrase�a</p>");
     out.println("<input type=\"text\" name=\"password1\" size=\"15\">");
     out.println("<p>Reingrese su contrase�a</p>");
     out.println("<input type=\"text\" name=\"password2\" size=\"15\">");

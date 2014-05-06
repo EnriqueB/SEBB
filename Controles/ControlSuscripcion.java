@@ -20,15 +20,39 @@ public class ControlSuscripcion {
        s.crearSuscripcion(IDC, IDS, duracion, tipo);   
    }
    public void actualizaTipo(int IDC, String tipo){
-       s.setTipo(s.getSuscripcion(IDC), tipo);
+       s.setTipo(IDC, tipo);
    }
    public void actualizaDuracion(int IDC, int D){
-       s.setDuracion(s.getSuscripcion(IDC), D);
+       s.setDuracion(IDC, D);
    }
    public void actualizaInicio(int IDC, Calendar c){
-       s.setInicio(s.getSuscripcion(IDC), c);
+       s.setInicio(IDC, c);
    }
-   public void actualizaFin(int IDC, Calendar c){
-       s.setFin(s.getSuscripcion(IDC), c);
+   public void actualizaFin(int IDC, int d, Calendar c){
+       s.setFin(IDC, d, c);
+   }
+   public int obtenerSiguiente(){
+       return s.getNext();
+   }
+   public int [] obtenerSuscripciones(int IDC){
+       return s.getSuscripciones(IDC);
+   }
+   public int obtenerSuscripcion(int IDC){
+       return s.getSuscripcion(IDC);
+   }
+   public Calendar obtenerInicio(int IDS){
+       return s.getInicio(IDS);
+   }
+   public Calendar obtenerFin(int IDS){
+       return s.getFin(IDS);
+   }
+   public int obtenerDuracion(int IDS){
+       return s.getDuracion(IDS);
+   }
+   public String obtenerTipo(int IDS){
+       return s.getTipo(IDS);
+   }
+   public void cancelarSuscripcion(int IDS){
+       s.cancelar(IDS);
    }
 }

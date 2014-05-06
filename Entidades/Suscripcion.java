@@ -35,21 +35,6 @@ public class Suscripcion {
         }
         return false;
     }
-    public int getSuscripcion(int ID){
-        int s=0;
-        try {
-            stmt.executeQuery("SELECT IDSuscripcion FROM Suscripcion WHERE IDCuenta = "+ID);
-            ResultSet rs = stmt.getResultSet();
-            rs.next();
-            s=rs.getInt("IDSuscripcion");
-            rs.close();
-            return(s);
-        }
-        catch(SQLException e){
-            System.out.println("Cannot getSuscripcion()"+e);
-        }
-        return s;
-    }
     public String getTipo(int ID){
         String tipo="";
         try {
@@ -150,17 +135,19 @@ public class Suscripcion {
     public void setInicio(int ID, Calendar c){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            String s = "UPDATE Suscripcion SET Inicio = " + sdf.format(c.getTime()) + " WHERE IDSuscripcion = " + ID;
+            String s = "UPDATE Suscripcion SET Inicio = '" + sdf.format(c.getTime()) + "' WHERE IDSuscripcion = " + ID;
             stmt.executeUpdate(s);
         } 
         catch (SQLException e) {
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
-    public void setFin(int ID, Calendar c){
+    public void setFin(int ID, int d,  Calendar c){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            String s = "UPDATE Suscripcion SET Fin = " + sdf.format(c.getTime()) + " WHERE IDSuscripcion = " + ID;
+            String s = "UPDATE Suscripcion SET Fin = '" + sdf.format(c.getTime()) + "' WHERE IDSuscripcion = " + ID;
+            stmt.executeUpdate(s);
+            s = "UPDATE Suscripcion Set Duracion = " + d + " WHERE IDSuscripcion = "+ ID;
             stmt.executeUpdate(s);
         } 
         catch (SQLException e) {
@@ -180,10 +167,10 @@ public class Suscripcion {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar ini = Calendar.getInstance();
         Calendar fin = Calendar.getInstance();
-        fin.add(Calendar.DATE, duracion);
+        fin.add(Calendar.DATE, duracion*365);
         try{
-            String s = "INSERT INTO Suscripcion (IDSuscripcion, Tipo, Duracion, Inicio, Fin, IDCuenta)" + " VALUES ("+IDS+" , "+ tipo + " , " + duracion + " , " + sdf.format(ini.getTime())
-                        + " , " + sdf.format(fin.getTime()) +" , "+ IDC+")";
+            String s = "INSERT INTO Suscripcion (IDSuscripcion, Tipo, Duracion, Inicio, Fin, IDCuenta)" + " VALUES ("+IDS+" , '"+ tipo + "' , " + duracion + " , '" + sdf.format(ini.getTime())
+                        + "' , '" + sdf.format(fin.getTime()) +"' , "+ IDC+")";
             System.out.println(s); 
             stmt.executeUpdate(s);
         }
@@ -193,10 +180,66 @@ public class Suscripcion {
     }
     public void cancelar(int ID) {
         try {
-            stmt.executeQuery("DELETE FROM Suscripcion WHERE IDSuscripcion = "+ID);
+            stmt.executeUpdate("DELETE FROM Suscripcion WHERE IDSuscripcion = "+ID);
         }
         catch (SQLException e) {
             System.out.println ("Cannot execute cancelar()" + e);
+        }
+    }
+    public int getNext(){
+        int n=0;
+        try {
+            stmt.executeQuery("SELECT IDSuscripcion FROM Suscripcion ORDER BY IDSuscripcion DESC LIMIT 1");
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            n=rs.getInt("IDSuscripcion");
+            rs.close();
+            return n+1;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getNext()"+e);
+        }
+        return n;
+    }
+    public int [] getSuscripciones(int IDC){
+        int [] suscripciones = new int [1];
+        suscripciones[0]=-1;
+        int count;
+        try {
+            stmt.executeQuery("SELECT COUNT(IDSuscripcion) as cant FROM Suscripcion WHERE IDCuenta = "+IDC);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            count=rs.getInt("cant");
+            rs.close();
+            stmt.executeQuery("SELECT IDSuscripcion FROM Suscripcion WHERE IDCuenta = "+IDC);
+            rs = stmt.getResultSet();
+            rs.next();
+            int [] suscripcionesEncontradas = new int [count];
+            for(int i=0; i<count; i++){
+                suscripcionesEncontradas[i]=rs.getInt("IDSuscripcion");
+                rs.next();
+            }
+            rs.close();
+            return(suscripcionesEncontradas);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getSuscripciones()"+e);
+        }
+        return suscripciones;
+    }
+    public int getSuscripcion(int IDC){
+        int suscripcion=-1;
+        try {
+            stmt.executeQuery("SELECT IDSuscripcion FROM Suscripcion WHERE IDCuenta = "+IDC+ " AND Tipo = 'Personal'");
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            suscripcion=rs.getInt("IDSuscripcion");
+            rs.close();
+            return(suscripcion);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getSuscripciones()"+e);
+            return suscripcion;
         }
     }
 }
