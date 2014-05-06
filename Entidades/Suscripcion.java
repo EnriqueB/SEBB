@@ -263,8 +263,8 @@ public class Suscripcion {
                 for(int i=0; i<count; i++){
                     d=rs.getDate("Fin");
                     fin.setTime(d);
-    		Calendar hoy = Calendar.getInstace();
-    		long resta = fin.getTimeInMilis()-hoy.getTimeInMilis();
+    		Calendar hoy = Calendar.getInstance();
+    		long resta = fin.getTimeInMillis()-hoy.getTimeInMillis();
     		resta=(resta/86400000);
     		Math.floor(resta);
     		if(resta==30 || resta==90){
