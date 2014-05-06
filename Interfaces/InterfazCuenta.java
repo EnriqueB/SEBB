@@ -4,6 +4,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import java.util.*;
+import controles.ControlInicioSesion;
+import controles.ControlCuenta;
 
 public class InterfazCuenta extends HttpServlet {
   HttpServletResponse thisResponse;
@@ -31,24 +33,68 @@ public class InterfazCuenta extends HttpServlet {
     out.println("<TITLE>SEBB</TITLE>");
     out.println("<h2>Cuenta</h2>");    
     String operacion = request.getParameter("operacion");
-    if(operacion == null){ // El menu nos envia un parametro para indicar el inicio de una transaccion
+    if(operacion == null || operacion.equals("cancel")){ // El menu nos envia un parametro para indicar el inicio de una transaccion
       desplegarDatos();  
     }else if(operacion.equals("editar")){
-       desplegarDatos();
-    } 
+       editarDatos();
+    }
+    else if(operacion.equals("cambio")){
+       cambiosRegistrados();
+    }
+  }
+  public void cambiosRegistrados(){
+    ci = new ControlInicioSesion();
+    cc = new ControlCuenta();
+    String nombre = ci.getConected();
+    int id = cc.obtenerID(nombre);
+    cc.actualizaNombre(id, thisRequest.getParameter("cuenta").trim());
+    cc.actualizaCorreo(id, thisRequest.getParameter("correo").trim());
+    cc.actualizaTelefono(id, thisRequest.getParameter("tel").trim());
+    cc.actualizaDireccion(id, thisRequest.getParameter("dir").trim());
+    nombre = ci.getConected();
+    String [] datos = ci.obtenerDatos(nombre);
+    out.println("<p>Los cambios han quedado registrados</p>");
+    
+    out.println("<p></p>");
+      out.println("<p>Información de la cuenta:</p>");
+      out.println("<p>Nombre: " + datos[0] + " </p>");
+      out.println("<p>Correo: " + datos[1] + " </p>");
+      out.println("<p>Telefono: " + datos[2] + " </p>");
+      out.println("<p>Direccion: " + datos[3] + " </p>");
+      out.println("<p>Tipo: " + datos[4] + " </p>");
+      
+      out.println("<form method=\"GET\" action=\"Cuenta\">");
+      out.println("<input type=\"hidden\" name=\"operacion\" value=\"editar\"/>");
+      out.println("<p><input type=\"submit\" value=\"Editar\"name=\"B2\"></p>");
+      out.println("</form>");
+      
+      out.println("<p>Presione el boton para terminar.</p>");
+      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+      out.println("</form>");
+      out.println("</BODY>");
+      out.println("</HTML>");
   }
   
-  public void mostrarCuenta(){  
-    out.println("<p>Informaciï¿½n de la cuenta</p>");
+  public void editarDatos(){  
+    
+    out.println("<p></p>");
+    out.println("<p>Información de la cuenta:</p>");
+    out.println("<p>Nombre</p>");
     out.println("<form method=\"GET\" action=\"Cuenta\">");
-    out.println("<input type=\"hidden\" name=\"operacion\" value=\"editar\"/>");
-    out.println("<input type=\"text\" name=\"cuenta\" size=\"15\"></p>");
-    out.println("<p>Indique su contraseï¿½a</p>");
-    out.println("<input type=\"text\" name=\"password\" size=\"15\">");
+    out.println("<input type=\"hidden\" name=\"operacion\" value=\"cambio\"/>");
+    out.println("<input type=\"text\" name=\"cuenta\" size=\"15\" VALUE=\"Nombre\"></p>");
+    out.println("<p>Correo</p>");
+    out.println("<input type=\"text\" name=\"correo\" size=\"15\" VALUE=\"ej@ej.com\">");
+    out.println("<p>Telefono</p>");
+    out.println("<input type=\"text\" name=\"tel\" size=\"15\" VALUE=\"telefono\">");
+    out.println("<p>Direccion</p>");
+    out.println("<input type=\"text\" name=\"dir\" size=\"15\" VALUE=\"Direccion\">");
     out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B1\"></p>");
-    out.println("</form>");
+    out.println("</form>");   
  
-    out.println("<form method=\"GET\" action=\"index.html\">");
+    out.println("<form method=\"GET\" action=\"Cuenta\">");
+    out.println("<input type=\"hidden\" name=\"operacion\" value=\"cancel\"/>");
     out.println("<p><input type=\"submit\" value=\"Cancelar\"name=\"B2\"></p>");
     out.println("</form>");
 
@@ -57,15 +103,22 @@ public class InterfazCuenta extends HttpServlet {
   }
   
   public void desplegarDatos(){  
+    ci = new ControlInicioSesion();
     String nombre = ci.getConected();
     String [] datos = ci.obtenerDatos(nombre);
       out.println("<p></p>");
-      out.println("<p>Informaciï¿½n de la cuenta:</p>");
+      out.println("<p>Información de la cuenta:</p>");
       out.println("<p>Nombre: " + datos[0] + " </p>");
       out.println("<p>Correo: " + datos[1] + " </p>");
       out.println("<p>Telefono: " + datos[2] + " </p>");
       out.println("<p>Direccion: " + datos[3] + " </p>");
       out.println("<p>Tipo: " + datos[4] + " </p>");
+      
+      out.println("<form method=\"GET\" action=\"Cuenta\">");
+      out.println("<input type=\"hidden\" name=\"operacion\" value=\"editar\"/>");
+      out.println("<p><input type=\"submit\" value=\"Editar\"name=\"B2\"></p>");
+      out.println("</form>");
+      
       out.println("<p>Presione el boton para terminar.</p>");
       out.println("<form method=\"GET\" action=\"index.html\">");
       out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");

@@ -149,7 +149,7 @@ public class Cuenta{
     }
     public void setCorreo(int ID, String correo){
         try {
-           String s = "UPDATE Cuenta SET Correo = " + correo + " WHERE IDCuenta = " + ID;
+           String s = "UPDATE Cuenta SET Correo = '" + correo + "' WHERE IDCuenta = " + ID;
            stmt.executeUpdate(s);
         } 
         catch (SQLException e) {
