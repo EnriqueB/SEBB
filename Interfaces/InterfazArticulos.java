@@ -53,6 +53,8 @@ public class InterfazArticulos extends HttpServlet {
         out.println("<form method=\"GET\" action=\"Articulos\">");
         out.println("<input type=\"hidden\" name=\"operacion\" value=\"agregar\"/>");
         out.println("<input type=\"text\" name=\"titulo\" size=\"15\"></p>");
+        out.println("<p>Autor:</p>");
+        out.println("<input type=\"text\" name=\"autor\" size=\"15\"></p>");
         out.println("<p>Texto:</p>");
         out.println("<TEXTAREA name=\"text\" rows=\"25\" cols=\"60\"></TEXTAREA>");
         out.println("<p><input type=\"submit\" value=\"Agregar\"name=\"B1\"></p>");
@@ -82,11 +84,12 @@ public class InterfazArticulos extends HttpServlet {
         String n = ci.getConected();
         cu = new ControlCuenta();
         cp = new ControlPublicacion();
-        int autorID = cu.obtenerID(n);
         int ID = cp.getNextID();
         String titulo = thisRequest.getParameter("titulo").trim();
+        String autor = thisRequest.getParameter("autor").trim();
         String texto = thisRequest.getParameter("text").trim();
-        boolean posible = cp.crearArticulo(ID, n, titulo, 1, 0, -1, autorID, 0, texto);
+        int autorID = cu.obtenerID(autor);
+        boolean posible = cp.crearArticulo(ID, autor, titulo, 1, 0, -1, autorID, 0, texto);
         if (posible){
           procesado();
         }
