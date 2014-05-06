@@ -255,22 +255,24 @@ public class Suscripcion {
                 rs.next();
                 count=rs.getInt("cant");
                 rs.close();
+                System.out.println(cant);
                 stmt.executeQuery("SELECT DISTINCT IDCuenta, Fin FROM Suscripcion");
                 rs = stmt.getResultSet();
                 rs.next();
                 int [] suscripcionesProximas = new int [count];
-    	    int apuntador =0;
+    	        int apuntador =0;
                 for(int i=0; i<count; i++){
+                    System.out.println(i);
                     d=rs.getDate("Fin");
                     fin.setTime(d);
-    		Calendar hoy = Calendar.getInstance();
-    		long resta = fin.getTimeInMillis()-hoy.getTimeInMillis();
-    		resta=(resta/86400000);
-    		Math.floor(resta);
-    		if(resta==30 || resta==90){
-    			suscripcionesProximas[apuntador]=rs.getInt("IDCuenta");
-    			apuntador++;
-    		}
+            		Calendar hoy = Calendar.getInstance();
+            		long resta = fin.getTimeInMillis()-hoy.getTimeInMillis();
+            		resta=(resta/86400000);
+            		Math.floor(resta);
+            		if(resta==30 || resta==90){
+            			suscripcionesProximas[apuntador]=rs.getInt("IDCuenta");
+            			apuntador++;
+            		}
                     rs.next();
                 }
                 rs.close();
