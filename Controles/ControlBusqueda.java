@@ -26,4 +26,7 @@ public class ControlBusqueda {
        //se asume previa validacion de la busqueda
        return a.getBusqueda(text);
    }
+   public String getArticulo(String titulo) {
+      return a.getTexto(titulo);
+   }
 }
