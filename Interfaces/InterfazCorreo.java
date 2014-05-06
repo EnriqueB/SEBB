@@ -71,7 +71,7 @@ public class InterfazBusqueda extends HttpServlet {
   	        out.println("</HTML>"); 
         }
         else {
-            out.println("<p> No hay suscripciones proximas a vencer. </p>")
+            out.println("<p> No hay suscripciones proximas a vencer. </p>");
             out.println("<form method=\"GET\" action=\"menu.html\">");
             out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B2\"></p>");
 		        out.println("</form>");
@@ -81,12 +81,11 @@ public class InterfazBusqueda extends HttpServlet {
         }
     }
     public void mandar () {
-      out.println("<p> Correos enviados exitosamente.. </p>")
+      out.println("<p> Correos enviados exitosamente.. </p>");
             out.println("<form method=\"GET\" action=\"menu.html\">");
             out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B2\"></p>");
 		        out.println("</form>");
 		        out.println("</BODY>");
 		        out.println("</HTML>"); 
     }
-  }
 }
