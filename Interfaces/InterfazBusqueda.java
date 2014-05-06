@@ -42,16 +42,18 @@ public class InterfazBusqueda extends HttpServlet {
   }
   
      public int [] buscar(){
-        int [] articulos = new int [1];
+	String busqueda="";
+	out.println("<input type=\"text\" name=\"busqueda\" size=\"15\"></p>");
+	int [] articulos = new int [1];
         articulos[0]=-1;
         int count;
         try {
-            stmt.executeQuery("SELECT COUNT(IDArticulo) as cant FROM Articulo WHERE Votos > 3 AND Publicado = 0");
+            stmt.executeQuery("SELECT COUNT(IDArticulo) as cant FROM Articulo WHERE Votos > 3 AND Publicado = 0 AND Titulo IN busqueda");
             ResultSet rs = stmt.getResultSet();
             rs.next();
             count=rs.getInt("cant");
             rs.close();
-            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Votos > 3 AND Publicado = 0 ");
+            stmt.executeQuery("SELECT IDArticulo FROM Articulo WHERE Votos > 3 AND Publicado = 0 AND Titulo IN busqueda");
             rs = stmt.getResultSet();
             rs.next();
             int [] articulosEncontrados = new int [count];
@@ -66,6 +68,5 @@ public class InterfazBusqueda extends HttpServlet {
             System.out.println("Cannot getArticulos()"+e);
         }
         return articulos;
- }
   } 
 }
