@@ -27,7 +27,7 @@ public class ControlPublicidad {
        }
        return false; //no existe en la lista de anuncios
    }
-   public void agregarAnuncio(int IDE, int IDA){
+   public void agregarAnuncio(int IDE, String IDA){
        //se asume previa verificacion de existencia
        a.insertarAnuncio(IDE, IDA);
    }
