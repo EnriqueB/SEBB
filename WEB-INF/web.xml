@@ -17,7 +17,16 @@
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/Inicio</url-pattern>
-    </servlet-mapping>    
+    </servlet-mapping>
+
+	<servlet>
+      <servlet-name>Cerrar</servlet-name>
+      <servlet-class>interfaces.InterfazCerrarSesion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Cerrar</servlet-name>
+        <url-pattern>/Cerrar</url-pattern>
+    </servlet-mapping>     
 
     <servlet>
       <servlet-name>Registro</servlet-name>

@@ -266,6 +266,15 @@ public class Cuenta{
             System.out.println ("Cannot execute disposicion()" + e);
         }
     }
+	public void disconect(String n){
+        try {
+           String s = "UPDATE Cuenta SET Conectado = 0 WHERE Nombre = '" + n+"'";
+           stmt.executeUpdate(s);
+        } 
+        catch (SQLException e) {
+            System.out.println ("Cannot execute disposicion()" + e);
+        }
+    }
     public String getConectado(){
         String nombre="";
         try {

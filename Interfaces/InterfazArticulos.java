@@ -60,7 +60,7 @@ public class InterfazArticulos extends HttpServlet {
         out.println("<p><input type=\"submit\" value=\"Agregar\"name=\"B1\"></p>");
         out.println("</form>");
      
-        out.println("<form method=\"GET\" action=\"index.html\">");
+        out.println("<form method=\"GET\" action=\"menu.html\">");
         out.println("<p><input type=\"submit\" value=\"Cancelar\"name=\"B2\"></p>");
         out.println("</form>");
     
@@ -70,7 +70,7 @@ public class InterfazArticulos extends HttpServlet {
     else{
         out.println("<p>No tiene permisos suficientes para estar aqui </p>");
         out.println("<p>Nombre</p>");
-        out.println("<form method=\"GET\" action=\"index.html\">");
+        out.println("<form method=\"GET\" action=\"menu.html\">");
         out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B2\"></p>");
         out.println("</form>");
 
@@ -100,7 +100,7 @@ public class InterfazArticulos extends HttpServlet {
   public void procesado(){  
       out.println("<p>Gracias por agregar su articulo con nosotros!</p>");
       out.println("<p>Presione el boton para regresar al indice.</p>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
       out.println("</form>");
       out.println("</BODY>");

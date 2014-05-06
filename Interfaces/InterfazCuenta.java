@@ -69,8 +69,8 @@ public class InterfazCuenta extends HttpServlet {
       out.println("</form>");
       
       out.println("<p>Presione el boton para terminar.</p>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
-      out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
+      out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B1\"></p>");
       out.println("</form>");
       out.println("</BODY>");
       out.println("</HTML>");
@@ -120,8 +120,8 @@ public class InterfazCuenta extends HttpServlet {
       out.println("</form>");
       
       out.println("<p>Presione el boton para terminar.</p>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
-      out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
+      out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B1\"></p>");
       out.println("</form>");
       out.println("</BODY>");
       out.println("</HTML>");   

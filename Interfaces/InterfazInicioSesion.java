@@ -81,9 +81,9 @@ public class InterfazInicioSesion extends HttpServlet {
       out.println("<p>Telefono: " + datos[2] + " </p>");
       out.println("<p>Direccion: " + datos[3] + " </p>");
       out.println("<p>Tipo: " + datos[4] + " </p>");
-      out.println("<p>Presione el boton para terminar.</p>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
-      out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+      out.println("<p>Presione el boton para continuar al menu.</p>");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
+      out.println("<p><input type=\"submit\" value=\"Continuar\"name=\"B1\"></p>");
       out.println("</form>");
       out.println("</BODY>");
       out.println("</HTML>");   

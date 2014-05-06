@@ -96,8 +96,8 @@ public class InterfazRegistro extends HttpServlet {
       out.println("<p>Telefono: " + tel + " </p>");
       out.println("<p>Direccion: " + dir + " </p>");
       out.println("<p>Tipo: Usuario </p>");
-      out.println("<p>Presione el boton para regresar al indice.</p>");
-      out.println("<form method=\"GET\" action=\"index.html\">");
+      out.println("<p>Presione el boton para ir al menu.</p>");
+      out.println("<form method=\"GET\" action=\"menu.html\">");
       out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
       out.println("</form>");
       out.println("</BODY>");

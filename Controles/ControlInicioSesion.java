@@ -19,4 +19,7 @@ public class ControlInicioSesion {
    public String getConected(){
        return cuenta.getConectado();
    }
+   public void desconectar(String n){
+       cuenta.disconect(n);
+   }
 }
