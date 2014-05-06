@@ -10,7 +10,7 @@ public class Suscripcion {
     public Suscripcion(){
         try{
             String userName="root";
-            String password="admin";
+            String password="password";
             String url = "jdbc:mysql://localhost/SEBB";
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection (url, userName, password);
