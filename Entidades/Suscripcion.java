@@ -254,7 +254,7 @@ public class Suscripcion {
                 rs.next();
                 count=rs.getInt("cant");
                 rs.close();
-                stmt.executeQuery("SELECT IDSuscripcion, Fin FROM Suscripcion");
+                stmt.executeQuery("SELECT DISTINCT IDCuenta, Fin FROM Suscripcion");
                 rs = stmt.getResultSet();
                 rs.next();
                 int [] suscripcionesProximas = new int [count];
@@ -266,7 +266,7 @@ public class Suscripcion {
     		resta=(resta/86400000.0);
     		Math.floor(resta);
     		if(resta==30 || resta==90){
-    			suscripcionesProximas[apuntador]=rs.getIDSuscripcion("IDSuscripcion");
+    			suscripcionesProximas[apuntador]=rs.getInt("IDCuenta");
     			apuntador++;
     		}
                     rs.next();
