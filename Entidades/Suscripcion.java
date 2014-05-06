@@ -247,6 +247,7 @@ public class Suscripcion {
     	int [] suscripciones = new int [0];
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Calendar fin = Calendar.getInstance();
+            Date d;
             int count;
             try {
                 stmt.executeQuery("SELECT COUNT(IDSuscripcion) as cant FROM Suscripcion");
@@ -254,21 +255,24 @@ public class Suscripcion {
                 rs.next();
                 count=rs.getInt("cant");
                 rs.close();
+                System.out.println(count);
                 stmt.executeQuery("SELECT DISTINCT IDCuenta, Fin FROM Suscripcion");
                 rs = stmt.getResultSet();
                 rs.next();
                 int [] suscripcionesProximas = new int [count];
-    	    int apuntador =0;
+    	        int apuntador =0;
                 for(int i=0; i<count; i++){
-                    fin=rs.getDate("Fin");
-    		Calendar hoy = new Calendar.getInstace();
-    		long resta = fin.getTimeInMilis()-hoy.getTimeInMilis();
-    		resta=(resta/86400000.0);
-    		Math.floor(resta);
-    		if(resta==30 || resta==90){
-    			suscripcionesProximas[apuntador]=rs.getInt("IDCuenta");
-    			apuntador++;
-    		}
+                    System.out.println(i);
+                    d=rs.getDate("Fin");
+                    fin.setTime(d);
+            		Calendar hoy = Calendar.getInstance();
+            		long resta = fin.getTimeInMillis()-hoy.getTimeInMillis();
+            		resta=(resta/86400000);
+            		Math.floor(resta);
+            		if(resta==30 || resta==90){
+            			suscripcionesProximas[apuntador]=rs.getInt("IDCuenta");
+            			apuntador++;
+            		}
                     rs.next();
                 }
                 rs.close();

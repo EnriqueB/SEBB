@@ -35,6 +35,9 @@ public class ControlCuenta {
        return c.getID(n);
    }
    public boolean verificarAdmin(int ID) {
-      return c.getTipo();
+      String t = c.getTipo(ID);
+      if(t.equals("Autor"))
+         return true;
+      return false;
    }
 }
