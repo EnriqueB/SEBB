@@ -159,10 +159,10 @@ public class Articulo {
             return false;
         }
     }
-    public String getTexto(int ID){
+    public String getTexto(String nombre){
         String texto="";
         try {
-            stmt.executeQuery("SELECT Texto FROM Articulo WHERE IDArticulo= "+ID);
+            stmt.executeQuery("SELECT Texto FROM Articulo WHERE Titulo= "+nombre);
             ResultSet rs = stmt.getResultSet();
             rs.next();
             texto=rs.getString("Texto");
