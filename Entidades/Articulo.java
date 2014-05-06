@@ -162,7 +162,7 @@ public class Articulo {
     public String getTexto(String nombre){
         String texto="";
         try {
-            stmt.executeQuery("SELECT Texto FROM Articulo WHERE Titulo= "+nombre);
+            stmt.executeQuery("SELECT Texto FROM Articulo WHERE Titulo like '"+nombre+"'");
             ResultSet rs = stmt.getResultSet();
             rs.next();
             texto=rs.getString("Texto");
