@@ -174,6 +174,21 @@ public class Articulo {
         }
         return texto;
     }
+    public String getTexto2(int ID){
+        String texto = "";
+        try {
+            stmt.executeQuery("SELECT Texto FROM Articulo WHERE IDArticulo = "+id);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            texto=rs.getString("Texto");
+            rs.close();
+            return(texto);
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getTexto()"+e);
+        }
+        return texto;
+    }
     public void revisarArticulo() {
       //pending
     }

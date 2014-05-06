@@ -99,4 +99,54 @@ public class Edicion {
             System.out.println ("Cannot update database" + e );
         }
     }
+    public int [] getAnuncios(int IDE){
+	int count;
+        int [] a = new int[1];
+        try {
+            stmt.executeQuery("SELECT COUNT(*) as cant FROM EdicionAnuncios WHERE IDEdicion = "+IDE);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            count=rs.getInt("cant");
+            rs.close();
+            stmt.executeQuery("Select IDAnuncios FROM EdicionAnuncios Where IDEdicion = "+IDE);
+            rs = stmt.getResultSet();
+            rs.next();
+            int [] anunciosEnc = new int[count];
+            for(int i=0; i<count; i++){
+                anunciosEnc[i]=rs.getInt("IDAnuncios");
+                rs.next();
+            }
+            rs.close();
+            return anunciosEnc;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getAnuncios()"+e);
+        }
+        return a;
+    }
+    public int [] getArticulos(int IDE){
+	int count;
+        int [] a = new int[1];
+        try {
+            stmt.executeQuery("SELECT COUNT(*) as cant FROM Articulo WHERE IDEdicion = "+IDE);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            count=rs.getInt("cant");
+            rs.close();
+            stmt.executeQuery("Select IDArticulo FROM Articulo Where IDEdicion = "+IDE);
+            rs = stmt.getResultSet();
+            rs.next();
+            int [] anunciosEnc = new int[count];
+            for(int i=0; i<count; i++){
+                anunciosEnc[i]=rs.getInt("IDArticulo");
+                rs.next();
+            }
+            rs.close();
+            return anunciosEnc;
+        }
+        catch(SQLException e){
+            System.out.println("Cannot getArticulos()"+e);
+        }
+        return a;
+    }
 }

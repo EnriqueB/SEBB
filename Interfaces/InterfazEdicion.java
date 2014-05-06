@@ -4,17 +4,19 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import java.util.*;
+import controles.ControlEdicion;
 import controles.ControlInicioSesion;
-import controles.ControlPublicacion;
 import controles.ControlCuenta;
+import controles.ControlSuscripcion;
 
-public class InterfazPublicacion extends HttpServlet {
+public class InterfazEdicion extends HttpServlet {
   HttpServletResponse thisResponse;
   HttpServletRequest thisRequest;
   PrintWriter out;
   ControlInicioSesion ci;
-  ControlPublicacion cp;
+  ControlSuscripcion cs;
   ControlCuenta cu;
+  ControlEdicion ce;
   //Es importante observar que todos los metodos definen la operacion GET para
   //que el metodo doGet sea el que se ejecuta al presionar el boton "Enviar". 
   public void doGet(HttpServletRequest request,
@@ -32,12 +34,12 @@ public class InterfazPublicacion extends HttpServlet {
     out.println("</HEAD>");
     out.println("<BODY>");
     out.println("<TITLE>SEBB</TITLE>");
-    out.println("<h2>Publicacion</h2>");    
+    out.println("<h2>Ediciones</h2>");    
     String operacion = request.getParameter("operacion");
     if(operacion == null){ // El menu nos envia un parametro para indicar el inicio de una transaccion
-      publicar();  
-    }else if(operacion.equals("publicar")){
-       publicacion();
+      pedir();  
+    }else if(operacion.equals("mostrar")){
+       mostrar();
     } 
   }
   
@@ -45,19 +47,14 @@ public class InterfazPublicacion extends HttpServlet {
     ci = new ControlInicioSesion();
     String n = ci.getConected();
     cu = new ControlCuenta();
-    cp = new ControlPublicacion();
-    boolean editor = cp.validarEditor(cu.obtenerID(n));
-    if(editor){
-        int [] art = cp.obtenerArticulos();
-        out.println("<p>Bienvenido, editor</p>");
-        out.println("<p>Esta es una lista de los IDs de los articulos listos para publicarse</p>");
-        for(int i=0; i<art.length; i++){
-            out.println("<p>"+art[i]+"</p>");
-        }
-        out.println("<p>Escriba los IDS de los Articulos que desea publicar separados por espacios </p>");
-        out.println("<form method=\"GET\" action=\"Publicacion\">");
-        out.println("<input type=\"hidden\" name=\"operacion\" value=\"publicar\"/>");
-        out.println("<input type=\"text\" name=\"IDS\" size=\"15\"></p>");
+    cs = new ControlSuscripcion();
+    boolean suscrito = cs.validarSus(cu.obtenerID(n));
+    if(suscrito || cu.verificarAdmin(cu.obtenerID(n))){
+        out.println("<p>Bienvenido a la consulta de edicion</p>");
+        out.println("<p>Escriba el numero de la edicion que desea ver</p>");
+        out.println("<form method=\"GET\" action=\"Edicion\">");
+        out.println("<input type=\"hidden\" name=\"operacion\" value=\"mostrar\"/>");
+        out.println("<input type=\"text\" name=\"IDE\" size=\"15\"></p>");
         out.println("<p><input type=\"submit\" value=\"Enviar\"name=\"B1\"></p>");
         out.println("</form>");
 
@@ -78,12 +75,20 @@ public class InterfazPublicacion extends HttpServlet {
         out.println("</HTML>"); 
     }
   }
-  public void publicacion(){  
-    String IDS = thisRequest.getParameter("IDS").trim();
-    String [] list = IDS.split(" ");
-    int IDE = cp.obtenerSiguiente();
-    cp.crearEdicion(IDE, list);
-    out.println("La nueva edicion ha sido publicada</p>");
+  public void mostrar(){  
+    String IDE = thisRequest.getParameter("IDE").trim();
+    ce = new ControlEdicion();
+    int [] arts = ce.obtenerArticulos(IDE);
+    int [] ans = ce.obtenerAnuncios(IDE);
+    out.println("<p>Articulos: </p>");
+    for (int i=0; i<arts.length; i++){
+    	out.println("<p>Titulo: "+ ce.obtenerTitulo(arts[i])+"</p>");
+	out.println("<p>Texto: " + ce.obtenerTexto(arts[i]) + "</p>");
+    }
+    out.println("<p>Anuncios: </p>");
+    for (int i=0; i<arts.length; i++){
+	out.println("<p>Texto: " + ce.obtenerNombre(an[i]) + "</p>");
+    }
     out.println("<p>Presione el boton para regresar al menu.</p>");
     out.println("<form method=\"GET\" action=\"menu.html\">");
     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
